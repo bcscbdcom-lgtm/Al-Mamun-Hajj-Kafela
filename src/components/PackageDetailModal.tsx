@@ -179,6 +179,12 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
             {lang === 'en' ? pkg.nameEn : pkg.nameBn}
           </h2>
 
+          {(pkg.subtitleEn || pkg.subtitleBn) && (
+            <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
+              {lang === 'en' ? pkg.subtitleEn : pkg.subtitleBn}
+            </p>
+          )}
+
           {/* Pricing & Interactive Currency Converter */}
           <div className="mt-4 p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-[#E5E7EB] shadow-2xs">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -310,9 +316,9 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
             <p className="text-xs text-slate-700 font-medium leading-snug">
               {lang === 'en' ? pkg.hotelMakkahEn : pkg.hotelMakkahBn}
             </p>
-            <p className="text-[11px] text-[#0369A1] mt-1 font-semibold flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-[#0284C7]" />
-              {lang === 'en' ? pkg.distanceMakkahEn : pkg.distanceMakkahBn}
+            <p className="text-[11px] text-[#0369A1] mt-1.5 font-semibold flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-[#0284C7] flex-shrink-0" />
+              <span>{lang === 'en' ? pkg.distanceMakkahEn : pkg.distanceMakkahBn}</span>
             </p>
           </div>
 
@@ -324,9 +330,46 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
             <p className="text-xs text-slate-700 font-medium leading-snug">
               {lang === 'en' ? pkg.hotelMadinahEn : pkg.hotelMadinahBn}
             </p>
-            <p className="text-[11px] text-[#0369A1] mt-1 font-semibold flex items-center gap-1">
-              <Plane className="w-3 h-3 text-[#0284C7]" />
-              {lang === 'en' ? pkg.airlinesEn : pkg.airlinesBn}
+            <p className="text-[11px] text-[#0369A1] mt-1.5 font-semibold flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-[#0284C7] flex-shrink-0" />
+              <span>
+                {lang === 'en'
+                  ? (pkg.distanceMadinahEn || pkg.hotelMadinahEn)
+                  : (pkg.distanceMadinahBn || pkg.hotelMadinahBn)}
+              </span>
+            </p>
+          </div>
+
+          {/* Mina & Arafat Logistics */}
+          <div className="bg-[#F8FAFC] p-4 rounded-2xl border border-[#E5E7EB]">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#0369A1] mb-1">
+              <Sparkles className="w-4 h-4 text-[#0369A1]" />
+              <span>{lang === 'en' ? 'Mina & Arafat Service' : 'মিনা ও আরাফাত ব্যবস্থাপনা'}</span>
+            </div>
+            <p className="text-xs text-slate-700 font-medium leading-snug">
+              {lang === 'en'
+                ? (pkg.minaArafatEn || 'Mina Category-C Zone-5 AC Tents & Moallem Guidance')
+                : (pkg.minaArafatBn || 'মিনা সার্ভিস Category-C (Zone-5 তাবু ও মুয়াল্লেম গাইড)')}
+            </p>
+            <p className="text-[11px] text-[#0369A1] mt-1.5 font-semibold flex items-center gap-1">
+              <Plane className="w-3.5 h-3.5 text-[#0284C7] flex-shrink-0" />
+              <span>{lang === 'en' ? pkg.airlinesEn : pkg.airlinesBn}</span>
+            </p>
+          </div>
+
+          {/* Food & Catering */}
+          <div className="bg-[#F8FAFC] p-4 rounded-2xl border border-[#E5E7EB]">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#0369A1] mb-1">
+              <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+              <span>{lang === 'en' ? 'Food & Catering Plan' : 'খাবার ও ক্যাটারিং'}</span>
+            </div>
+            <p className="text-xs text-slate-700 font-medium leading-snug">
+              {lang === 'en'
+                ? (pkg.foodEn || '3 daily authentic Bengali meals & Mina catering included')
+                : (pkg.foodBn || 'প্রতিদিন ৩ বেলা সুস্বাদু দেশীয় খাবার ও মিনায় ক্যাটারিং')}
+            </p>
+            <p className="text-[11px] text-emerald-800 mt-1.5 font-semibold flex items-center gap-1">
+              <span>✓ {lang === 'en' ? 'Bengali Cook / Catering' : 'দেশি বাবুর্চি ও ফ্রেশ খাবার'}</span>
             </p>
           </div>
         </div>

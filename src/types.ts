@@ -6,6 +6,8 @@ export interface PackageItem {
   category: 'budget' | 'economy' | 'standard' | 'vip' | 'vvip';
   badgeEn: string;
   badgeBn: string;
+  subtitleEn?: string;
+  subtitleBn?: string;
   categoryTagsEn?: string[];
   categoryTagsBn?: string[];
   isPopular?: boolean;
@@ -22,6 +24,12 @@ export interface PackageItem {
   hotelMadinahBn: string;
   distanceMakkahEn: string;
   distanceMakkahBn: string;
+  distanceMadinahEn?: string;
+  distanceMadinahBn?: string;
+  minaArafatEn?: string;
+  minaArafatBn?: string;
+  foodEn?: string;
+  foodBn?: string;
   highlightsEn: string[];
   highlightsBn: string[];
   inclusionsEn: string[];

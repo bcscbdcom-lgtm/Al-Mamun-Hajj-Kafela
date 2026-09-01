@@ -394,27 +394,17 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                   : 'bg-[#F0F9FF] text-[#334155] hover:bg-[#E0F2FE] hover:text-[#0284C7] border border-[#BAE6FD]'
               }`}
             >
-              {lang === 'en' ? 'All Packages' : 'সকল প্যাকেজ'}
-            </button>
-            <button
-              onClick={() => handleFilterChange('budget')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                activeFilter === 'budget'
-                  ? 'bg-[#0284C7] text-white shadow-2xs'
-                  : 'bg-[#F0F9FF] text-[#334155] hover:bg-[#E0F2FE] hover:text-[#0284C7] border border-[#BAE6FD]'
-              }`}
-            >
-              {lang === 'en' ? 'Budget Saver' : 'সাশ্রয়ী'}
+              {lang === 'en' ? 'All Packages (5)' : 'সকল প্যাকেজ (৫টি)'}
             </button>
             <button
               onClick={() => handleFilterChange('economy')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                activeFilter === 'economy'
+                activeFilter === 'economy' || activeFilter === 'budget'
                   ? 'bg-[#0284C7] text-white shadow-2xs'
                   : 'bg-[#F0F9FF] text-[#334155] hover:bg-[#E0F2FE] hover:text-[#0284C7] border border-[#BAE6FD]'
               }`}
             >
-              {lang === 'en' ? 'Economy' : 'ইকোনমি'}
+              {lang === 'en' ? 'Economy Saver' : 'সাশ্রয়ী ইকোনমি'}
             </button>
             <button
               onClick={() => handleFilterChange('standard')}
@@ -424,7 +414,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                   : 'bg-[#F0F9FF] text-[#334155] hover:bg-[#E0F2FE] hover:text-[#0284C7] border border-[#BAE6FD]'
               }`}
             >
-              {lang === 'en' ? '★ Standard' : '★ স্ট্যান্ডার্ড'}
+              {lang === 'en' ? 'Standard & Shifting' : 'স্ট্যান্ডার্ড ও শিফটিং'}
             </button>
             <button
               onClick={() => handleFilterChange('vip')}
@@ -434,7 +424,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                   : 'bg-[#F0F9FF] text-[#334155] hover:bg-[#E0F2FE] hover:text-[#0284C7] border border-[#BAE6FD]'
               }`}
             >
-              {lang === 'en' ? 'VIP & Royal Luxury' : 'ভিআইপি ও লাক্সারি'}
+              {lang === 'en' ? 'Permanent & 5-Star VIP' : 'স্থায়ী ও ৫-স্টার ভিআইপি'}
             </button>
           </div>
 
@@ -595,17 +585,51 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                     {lang === 'en' ? pkg.nameEn : pkg.nameBn}
                   </h3>
 
-                  <div className="text-xs text-slate-500 font-medium mb-3">
-                    {localizeDuration(lang === 'en' ? pkg.durationEn : pkg.durationBn, lang)}
+                  {(pkg.subtitleEn || pkg.subtitleBn) && (
+                    <p className="text-xs text-slate-600 font-medium mt-0.5 line-clamp-1">
+                      {lang === 'en' ? pkg.subtitleEn : pkg.subtitleBn}
+                    </p>
+                  )}
+
+                  <div className="text-xs text-slate-500 font-medium my-2 flex items-center justify-between">
+                    <span className="flex items-center gap-1 font-mono">
+                      <Clock className="w-3 h-3 text-slate-400" />
+                      {localizeDuration(lang === 'en' ? pkg.durationEn : pkg.durationBn, lang)}
+                    </span>
+                    <span className="text-[11px] font-semibold text-slate-500 truncate max-w-[140px]">
+                      ✈ {lang === 'en' ? pkg.airlinesEn : pkg.airlinesBn}
+                    </span>
+                  </div>
+
+                  {/* Distance & Stay Badges */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-3.5 text-[11px]">
+                    <div className="bg-[#F0F9FF] border border-[#BAE6FD] rounded-lg p-1.5 text-slate-700">
+                      <span className="font-bold text-[#0369A1] block">
+                        📍 {lang === 'en' ? 'Makkah:' : 'মক্কা:'}
+                      </span>
+                      <span className="text-[10px] text-slate-600 line-clamp-1">
+                        {lang === 'en' ? pkg.distanceMakkahEn : pkg.distanceMakkahBn}
+                      </span>
+                    </div>
+                    <div className="bg-[#F0F9FF] border border-[#BAE6FD] rounded-lg p-1.5 text-slate-700">
+                      <span className="font-bold text-[#0369A1] block">
+                        📍 {lang === 'en' ? 'Madinah:' : 'মদিনা:'}
+                      </span>
+                      <span className="text-[10px] text-slate-600 line-clamp-1">
+                        {lang === 'en'
+                          ? (pkg.distanceMadinahEn || pkg.hotelMadinahEn)
+                          : (pkg.distanceMadinahBn || pkg.hotelMadinahBn)}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Price Display */}
-                  <div className="text-2xl font-black text-[#0284C7] mb-4 tracking-tight font-mono">
+                  <div className="text-2xl font-black text-[#0284C7] mb-3 tracking-tight font-mono">
                     {lang === 'en' ? pkg.priceEn : pkg.priceBn}
                   </div>
 
                   {/* Key Bullet Highlights */}
-                  <ul className="space-y-2 text-xs text-[#334155] border-t border-slate-100 pt-4">
+                  <ul className="space-y-1.5 text-xs text-[#334155] border-t border-slate-100 pt-3">
                     {(lang === 'en' ? pkg.highlightsEn : pkg.highlightsBn).slice(0, 4).map((hl, i) => (
                       <li key={i} className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-[#0284C7] flex-shrink-0 mt-0.5" />
@@ -616,8 +640,8 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                 </div>
 
                 {/* Bottom Card Actions */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-2.5">
-                  <div className="flex items-center gap-2">
+                <div className="mt-5 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
+                  <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => onOpenPreReg(lang === 'en' ? pkg.nameEn : pkg.nameBn)}
                       className={`flex-1 py-2.5 rounded-xl text-xs font-bold text-center transition cursor-pointer ${
@@ -626,8 +650,20 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                           : 'bg-[#F0F9FF] hover:bg-[#E0F2FE] text-[#0284C7] border border-[#BAE6FD] font-bold'
                       }`}
                     >
-                      {lang === 'en' ? 'Enquire / Book' : 'বুকিং আবেদন'}
+                      {lang === 'en' ? 'Book Package' : 'বুকিং আবেদন'}
                     </button>
+
+                    <a
+                      href={`https://wa.me/8801712864077?text=${encodeURIComponent(
+                        `Assalamu Alaikum, I would like more information about "${lang === 'en' ? pkg.nameEn : pkg.nameBn}" (${lang === 'en' ? pkg.priceEn : pkg.priceBn}) at Al Mamun Hazz Kafela.`
+                      )}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 transition cursor-pointer flex-shrink-0 border border-emerald-200"
+                      title={lang === 'en' ? 'WhatsApp 01712-864077' : 'হোয়াটসঅ্যাপে যোগাযোগ'}
+                    >
+                      <MessageCircle className="w-4 h-4 text-emerald-600" />
+                    </a>
 
                     <button
                       onClick={() => onViewPackageDetails(pkg)}

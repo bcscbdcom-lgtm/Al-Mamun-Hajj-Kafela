@@ -15,7 +15,6 @@ import { GuideSection } from './components/GuideSection';
 import { PilgrimTools } from './components/PilgrimTools';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { PilgrimVideoTestimonialSection } from './components/PilgrimVideoTestimonialSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
 import { FaqSection } from './components/FaqSection';
 import { ConsultationSection } from './components/ConsultationSection';
 import { BlogSection } from './components/BlogSection';
@@ -325,14 +324,11 @@ function AppContent() {
         {/* 12. Why Choose Us (Value Pillars) */}
         <WhyChooseUs lang={lang} />
 
-        {/* 13. Pilgrim Video Testimonials (Embedded YouTube/Vimeo social proof & recorded interviews) */}
+        {/* 13. Pilgrim Written Reviews & Real Experiences */}
         <PilgrimVideoTestimonialSection
           lang={lang}
           onOpenPreReg={handleOpenPreReg}
         />
-
-        {/* 13.1 Testimonials & Google Reviews */}
-        <TestimonialsSection lang={lang} />
 
         {/* 14. FAQs Accordion */}
         <FaqSection

@@ -196,18 +196,41 @@ export const PackageCompareModal: React.FC<PackageCompareModalProps> = ({
                 {/* 4. Madinah Hotel */}
                 <tr className="hover:bg-slate-50/50 transition">
                   <td className="p-3.5 font-bold text-slate-700 bg-slate-50/40">
-                    {lang === 'en' ? 'Madinah Hotel' : 'মদিনা হোটেল'}
+                    {lang === 'en' ? 'Madinah Hotel & Distance' : 'মদিনা হোটেল ও দূরত্ব'}
                   </td>
                   {packages.map((pkg) => (
                     <td key={pkg.id} className="p-3.5 text-slate-700">
                       <div className="font-bold text-slate-900">
                         {lang === 'en' ? pkg.hotelMadinahEn : pkg.hotelMadinahBn}
                       </div>
+                      {(pkg.distanceMadinahEn || pkg.distanceMadinahBn) && (
+                        <div className="text-[11px] text-[#0369A1] mt-0.5 font-medium">
+                          📍 {lang === 'en' ? pkg.distanceMadinahEn : pkg.distanceMadinahBn}
+                        </div>
+                      )}
                     </td>
                   ))}
                 </tr>
 
-                {/* 5. Flights & Airlines */}
+                {/* 5. Mina & Arafat Tent Service */}
+                <tr className="hover:bg-slate-50/50 transition">
+                  <td className="p-3.5 font-bold text-slate-700 bg-slate-50/40">
+                    {lang === 'en' ? 'Mina & Arafat Tent' : 'মিনা ও আরাফাত তাবু'}
+                  </td>
+                  {packages.map((pkg) => (
+                    <td key={pkg.id} className="p-3.5 text-slate-700 text-xs">
+                      <div className="font-semibold text-slate-900">
+                        {pkg.type === 'hajj'
+                          ? (lang === 'en'
+                              ? (pkg.minaArafatEn || 'Category-C Zone-5 Tents')
+                              : (pkg.minaArafatBn || 'Category-C (Zone-5 তাবু)'))
+                          : (lang === 'en' ? 'N/A (Umrah)' : 'প্রযোজ্য নয়')}
+                      </div>
+                    </td>
+                  ))}
+                </tr>
+
+                {/* 6. Flights & Airlines */}
                 <tr className="hover:bg-slate-50/50 transition">
                   <td className="p-3.5 font-bold text-slate-700 bg-slate-50/40">
                     {lang === 'en' ? 'Airlines & Flights' : 'এয়ারলাইন্স ও ফ্লাইট'}
@@ -221,28 +244,19 @@ export const PackageCompareModal: React.FC<PackageCompareModalProps> = ({
                   ))}
                 </tr>
 
-                {/* 6. Food & Catering */}
+                {/* 7. Food & Catering */}
                 <tr className="hover:bg-slate-50/50 transition">
                   <td className="p-3.5 font-bold text-slate-700 bg-slate-50/40">
                     {lang === 'en' ? 'Food & Catering' : 'খাবার ও ক্যাটারিং'}
                   </td>
                   {packages.map((pkg) => {
-                    const hasFood =
-                      pkg.inclusionsEn.some((i) => i.toLowerCase().includes('meal') || i.toLowerCase().includes('buffet') || i.toLowerCase().includes('catering') || i.toLowerCase().includes('breakfast')) ||
-                      pkg.highlightsEn.some((h) => h.toLowerCase().includes('meal') || h.toLowerCase().includes('buffet') || h.toLowerCase().includes('catering'));
+                    const foodText = lang === 'en' ? (pkg.foodEn || '3x Daily Bengali Meals') : (pkg.foodBn || '৩ বেলা দেশীয় খাবার');
                     return (
                       <td key={pkg.id} className="p-3.5 text-slate-700">
-                        {hasFood ? (
-                          <div className="flex items-center gap-1.5 text-emerald-700 font-semibold">
-                            <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                            <span>{lang === 'en' ? '3x Buffet Meals Included' : '৩ বেলা খাবার অন্তর্ভুক্ত'}</span>
-                          </div>
-                        ) : (
-                          <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-                            <Minus className="w-4 h-4 flex-shrink-0" />
-                            <span>{lang === 'en' ? 'Self / Optional Add-on' : 'ঐচ্ছিক অ্যাড-অন'}</span>
-                          </div>
-                        )}
+                        <div className="flex items-start gap-1.5 text-emerald-700 font-semibold text-xs">
+                          <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                          <span>{foodText}</span>
+                        </div>
                       </td>
                     );
                   })}
