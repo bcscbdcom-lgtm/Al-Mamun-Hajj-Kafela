@@ -1,4 +1,7 @@
 import { Language } from '../types';
+import { getDynamicSeasonRange, getDynamicSeasonYear, getDynamicShortSeasonRange } from './dateUtils';
+
+export { getDynamicSeasonRange, getDynamicSeasonYear, getDynamicShortSeasonRange };
 
 // Bengali digit mapping
 const BN_DIGITS: { [key: string]: string } = {
@@ -217,9 +220,10 @@ export function localizeDuration(durationStr: string, lang: Language): string {
 
 /**
  * Localizes season year ranges e.g. "2026–2027" -> "২০২৬–২০২৭"
+ * If seasonStr is omitted or empty, returns current dynamic season range.
  */
-export function localizeSeason(seasonStr: string, lang: Language): string {
-  if (!seasonStr) return '';
+export function localizeSeason(seasonStr: string | undefined | null, lang: Language): string {
+  if (!seasonStr) return getDynamicSeasonRange(lang);
   return lang === 'bn' ? toBengaliNumber(seasonStr) : seasonStr;
 }
 

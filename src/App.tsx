@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Language, PackageItem, NoticeItem } from './types';
+import { getDynamicSeasonRange } from './utils/dateUtils';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { NoticeBanner } from './components/NoticeBanner';
 import { TopBar } from './components/TopBar';
@@ -151,8 +152,8 @@ function AppContent() {
   // Notice Banner state (with LocalStorage persistence)
   const defaultNotice: NoticeItem = {
     id: 'default-notice',
-    textEn: '📢 Hajj 2026–2027 Pre-Registration is Active! Priority allocation available at our Khulna office.',
-    textBn: '📢 হজ ২০২৬–২০২৭ এর সরকারি প্রাক-নিবন্ধন চলছে! অগ্রাধিকার ভিত্তিতে বুকিং করতে খুলনা অফিসে যোগাযোগ করুন।',
+    textEn: `📢 Hajj ${getDynamicSeasonRange('en')} Pre-Registration is Active! Priority allocation available at our Khulna office.`,
+    textBn: `📢 হজ ${getDynamicSeasonRange('bn')} এর সরকারি প্রাক-নিবন্ধন চলছে! অগ্রাধিকার ভিত্তিতে বুকিং করতে খুলনা অফিসে যোগাযোগ করুন।`,
     active: true,
     type: 'urgent',
     date: new Date().toISOString(),
@@ -251,7 +252,7 @@ function AppContent() {
           </div>
           <div className="text-right text-xs text-slate-600">
             <div className="font-bold">Official Package Brochure</div>
-            <div>Season 2026–2027</div>
+            <div>Season {getDynamicSeasonRange('en')}</div>
             <div className="text-[10px] text-slate-400 mt-1">almamunhajjkhulna@gmail.com</div>
           </div>
         </div>

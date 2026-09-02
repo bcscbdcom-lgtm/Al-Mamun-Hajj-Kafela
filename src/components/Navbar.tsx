@@ -55,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
         <div className="flex items-center justify-between h-20">
           {/* Left: Brand Logo & Title */}
           <a href="#home" className="flex items-center gap-3.5 group shrink-0 py-1">
-            <BrandLogo className="h-14 md:h-16 w-auto shrink-0 object-contain scale-110" />
+            <BrandLogo className="h-14 md:h-16 w-auto object-contain shrink-0" />
             <div>
               <div className="text-lg sm:text-xl font-black text-[#0369A1] tracking-tight leading-none">
                 {lang === 'en' ? (

@@ -2,6 +2,7 @@ import React from 'react';
 import { Language } from '../types';
 import { HolyCitiesWeatherWidget } from './HolyCitiesWeatherWidget';
 import { HajjCountdown } from './HajjCountdown';
+import { getDynamicSeasonYear } from '../utils/dateUtils';
 
 interface SpiritualLiveSectionProps {
   lang: Language;
@@ -41,7 +42,7 @@ export const SpiritualLiveSection: React.FC<SpiritualLiveSectionProps> = ({
           <div className="h-full">
             <HajjCountdown
               lang={lang}
-              onOpenPreReg={() => onOpenPreReg('Hajj 2027 Pre-Registration')}
+              onOpenPreReg={() => onOpenPreReg(`Hajj ${getDynamicSeasonYear(1, 'en')} Pre-Registration`)}
             />
           </div>
         </div>

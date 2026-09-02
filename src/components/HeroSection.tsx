@@ -13,6 +13,7 @@ import {
   Compass
 } from 'lucide-react';
 import { Language } from '../types';
+import { getDynamicSeasonYear, getDynamicSeasonRange } from '../utils/dateUtils';
 import { MakkahClockWidget } from './MakkahClockWidget';
 
 export interface HeroSlide {
@@ -139,14 +140,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Sleek Minimalist Pre-Registration Pill Badge */}
               <button
                 type="button"
-                onClick={() => onOpenPreReg('Hajj 2027 Pre-Registration')}
+                onClick={() => onOpenPreReg(`Hajj ${getDynamicSeasonYear(1, false)} Pre-Registration`)}
                 className="inline-flex items-center gap-2 bg-sky-500/20 hover:bg-sky-500/30 text-sky-200 hover:text-white border border-sky-400/40 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold transition shadow-md cursor-pointer group"
               >
                 <Sparkles className="w-3.5 h-3.5 text-sky-400 group-hover:rotate-12 transition-transform" />
                 <span>
                   {lang === 'en'
-                    ? '✨ Hajj 2027 Pre-Registration Active'
-                    : '✨ পবিত্র হজ্ব ২০২৭ প্রি-রেজিস্ট্রেশন চলছে'}
+                    ? `✨ Hajj ${getDynamicSeasonYear(1, lang)} Pre-Registration Active`
+                    : `✨ পবিত্র হজ্ব ${getDynamicSeasonYear(1, lang)} প্রি-রেজিস্ট্রেশন চলছে`}
                 </span>
                 <ArrowRight className="w-3 h-3 text-sky-400 group-hover:translate-x-0.5 transition-transform" />
               </button>

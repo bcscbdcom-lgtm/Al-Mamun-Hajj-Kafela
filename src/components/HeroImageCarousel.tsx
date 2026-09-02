@@ -16,6 +16,7 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import { Language } from '../types';
+import { getDynamicSeasonRange, getDynamicSeasonYear } from '../utils/dateUtils';
 
 export interface CarouselSlide {
   id: string;
@@ -45,8 +46,8 @@ export const HERO_SLIDES: CarouselSlide[] = [
     titleBn: 'পবিত্র মসজিদুল হারাম ও কাবা শরিফ',
     locationEn: 'Masjid al-Haram, Makkah',
     locationBn: 'মসজিদুল হারাম, মক্কা মুকাররমা',
-    seasonEn: 'Hajj & Umrah 2026-2027',
-    seasonBn: 'হজ ও ওমরাহ ২০২৬-২০২৭',
+    seasonEn: `Hajj & Umrah ${getDynamicSeasonRange('en', '-')}`,
+    seasonBn: `হজ ও ওমরাহ ${getDynamicSeasonRange('bn', '-')}`,
     descriptionEn: 'Al Mamun Hajj Kafela pilgrims performing their welcome Tawaf together under the direct spiritual guidance of Mufti Amanullah.',
     descriptionBn: 'মুফতী আমানুল্লাহ সাহেবের সার্বক্ষণিক তত্ত্বাবধানে আল মামুন কাফেলার সম্মানিত হাজীদের তাওয়াফ সমাপন।',
     badgeEn: 'Makkah Al-Mukarramah',
@@ -64,8 +65,8 @@ export const HERO_SLIDES: CarouselSlide[] = [
     titleBn: 'মসজিদে নববী ও পবিত্র রওজা শরিফ জিয়ারত',
     locationEn: 'Al-Masjid an-Nabawi, Madinah',
     locationBn: 'মসজিদে নববী, মদিনা মুনাওয়ারা',
-    seasonEn: 'Madinah Stay • 2026',
-    seasonBn: 'মদিনা সফর • ২০২৬',
+    seasonEn: `Madinah Stay • ${getDynamicSeasonYear(0, 'en')}`,
+    seasonBn: `মদিনা সফর • ${getDynamicSeasonYear(0, 'bn')}`,
     descriptionEn: 'Serene group prayers in the Prophet\'s Mosque courtyard with convenient hotel walking distance for senior pilgrims.',
     descriptionBn: 'মসজিদে নববীর শান্ত প্রাঙ্গণে জামাতে নামাজ ও প্রবীণ হাজীদের জন্য মারকাজিয়া এলাকার কাছে হোটেল সুবিধা।',
     badgeEn: 'Madinah Al-Munawwarah',

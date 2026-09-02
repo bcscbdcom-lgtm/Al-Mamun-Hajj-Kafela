@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import { Language, PackageItem } from '../types';
 import { hajjPackages } from '../data/hajjPackages';
-import { localizeDuration, localizeSeason, localizeNumber, toBengaliNumber } from '../utils/dateFormatter';
+import { localizeDuration, localizeSeason, localizeNumber, toBengaliNumber, getDynamicSeasonRange } from '../utils/dateFormatter';
 import { PackageCardSkeleton } from './skeletons/PackageCardSkeleton';
 import {
   getSearchHistory,
@@ -234,8 +234,8 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
       <div className="text-center max-w-3xl mx-auto mb-8">
         <span className="bg-[#E0F2FE] text-[#0284C7] border border-[#BAE6FD] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
           {lang === 'en'
-            ? `Hajj ${localizeSeason('2026–2027', lang)} Caravans`
-            : `হজ ${localizeSeason('2026–2027', lang)} কাফেলা`}
+            ? `Hajj ${getDynamicSeasonRange(lang)} Caravans`
+            : `হজ ${getDynamicSeasonRange(lang)} কাফেলা`}
         </span>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0369A1] mt-3 tracking-tight">
           {lang === 'en' ? 'Hajj Packages' : 'হজ প্যাকেজসমূহ'}

@@ -12,11 +12,10 @@ export const MapAndCtaSection: React.FC<MapAndCtaSectionProps> = ({ lang }) => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         
         {/* Left Callout Box */}
-        <div className="lg:col-span-6 bg-gradient-to-br from-[#0369A1] via-[#0369A1] to-[#0369A1] rounded-3xl p-8 sm:p-12 text-white flex flex-col justify-between shadow-lg border border-[#BAE6FD] relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#E0F2FE] rounded-full blur-3xl pointer-events-none"></div>
+        <div className="lg:col-span-6 bg-gradient-to-r from-sky-800 to-sky-950 text-white border border-sky-700/50 shadow-xl rounded-3xl p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden">
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-1.5 bg-white/10 border border-[#BAE6FD] text-[#0284C7] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-              <ShieldCheck className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-1.5 bg-sky-900/80 border border-sky-500/30 text-sky-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+              <ShieldCheck className="w-3.5 h-3.5 text-sky-300" />
               <span>{lang === 'en' ? 'Direct Senior Advisor Access' : 'সরাসরি উপদেষ্টা সেবা'}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 leading-tight text-white">
@@ -24,7 +23,7 @@ export const MapAndCtaSection: React.FC<MapAndCtaSectionProps> = ({ lang }) => {
                 ? 'Ready to begin your sacred journey?'
                 : 'আপনার পবিত্র সফর শুরু করতে প্রস্তুত?'}
             </h2>
-            <p className="text-emerald-100 text-sm leading-relaxed max-w-md">
+            <p className="text-sky-100/90 text-sm sm:text-base leading-relaxed max-w-md">
               {lang === 'en'
                 ? 'Speak with an Al Mamun Hajj Kafela advisor today for honest guidance on Hajj pre-registration and upcoming Umrah slots.'
                 : 'আজই আল মামুন হজ্ব কাফেলার অভিজ্ঞ পরিচালকদের সাথে কথা বলে জেনে নিন আপনার জন্য সবচেয়ে উপযোগী হজ বা ওমরাহ প্যাকেজ।'}
@@ -34,19 +33,19 @@ export const MapAndCtaSection: React.FC<MapAndCtaSectionProps> = ({ lang }) => {
           <div className="flex flex-wrap gap-4 mt-8 relative z-10">
             <a
               href="tel:+8801712864077"
-              className="bg-white hover:bg-slate-50 text-[#0369A1] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow-sm transition flex items-center gap-2 font-mono"
+              className="bg-white hover:bg-slate-100 text-sky-900 font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow-md transition flex items-center gap-2 font-mono"
             >
-              <Phone className="w-4 h-4 text-[#0369A1]" />
+              <Phone className="w-4 h-4 text-sky-800" />
               <span>Call 01712-864077</span>
             </a>
 
             <a
-              href="https://wa.me/8801712864077?text=Assalamu%20Alaikum%2C%20I%20would%20like%20to%20know%20more%20about%20Al%20Mamun%20Hajj%20Kafela%20packages."
+              href="https://wa.me/8801712864077?text=আসসালামু%20আলাইকুম,%20আল%20মামুন%20হজ্ব%20কাফেলা%20সম্পর্কে%20জানতে%20চাই"
               target="_blank"
-              rel="noreferrer"
-              className="bg-[#0369A1] hover:bg-[#07301e] text-white border border-[#BAE6FD] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2"
+              rel="noopener noreferrer"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-400/30 font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 shadow-md"
             >
-              <MessageCircle className="w-4 h-4 text-[#0284C7]" />
+              <MessageCircle className="w-4 h-4 text-white" />
               <span>{lang === 'en' ? 'Chat on WhatsApp' : 'হোয়াটসঅ্যাপে বার্তা দিন'}</span>
             </a>
           </div>

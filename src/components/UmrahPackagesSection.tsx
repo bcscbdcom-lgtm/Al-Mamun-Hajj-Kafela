@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { Language, PackageItem } from '../types';
 import { umrahPackages, upcomingUmrahSchedules } from '../data/umrahPackages';
-import { localizeDateRange, localizeDuration, localizeSeason, localizeNumber, toBengaliNumber } from '../utils/dateFormatter';
+import { localizeDateRange, localizeDuration, localizeSeason, localizeNumber, toBengaliNumber, getDynamicSeasonRange } from '../utils/dateFormatter';
 import { PackageCardSkeleton } from './skeletons/PackageCardSkeleton';
 import {
   getSearchHistory,
@@ -232,8 +232,8 @@ export const UmrahPackagesSection: React.FC<UmrahPackagesSectionProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="bg-[#E0F2FE] text-[#0284C7] border border-[#BAE6FD] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
             {lang === 'en'
-              ? `Umrah ${localizeSeason('2026–2027', lang)}`
-              : `ওমরাহ ${localizeSeason('2026–2027', lang)}`}
+              ? `Umrah ${getDynamicSeasonRange(lang)}`
+              : `ওমরাহ ${getDynamicSeasonRange(lang)}`}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0369A1] mt-3 tracking-tight">
             {lang === 'en' ? 'Umrah Packages' : 'ওমরাহ প্যাকেজসমূহ'}
@@ -586,8 +586,8 @@ export const UmrahPackagesSection: React.FC<UmrahPackagesSectionProps> = ({
               <div>
                 <h3 className="text-xl font-extrabold text-[#0369A1]">
                   {lang === 'en'
-                    ? `Upcoming Umrah Group Schedule (${localizeSeason('2026–2027', lang)})`
-                    : `আসন্ন ওমরাহ গ্রুপ শিডিউল (${localizeSeason('2026–2027', lang)})`}
+                    ? `Upcoming Umrah Group Schedule (${getDynamicSeasonRange(lang)})`
+                    : `আসন্ন ওমরাহ গ্রুপ শিডিউল (${getDynamicSeasonRange(lang)})`}
                 </h3>
                 <p className="text-xs text-[#334155]">
                   {lang === 'en'

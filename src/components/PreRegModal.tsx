@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Send, ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
 import { Language } from '../types';
+import { getDynamicSeasonRange } from '../utils/dateUtils';
 
 interface PreRegModalProps {
   isOpen: boolean;
@@ -17,7 +18,7 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
 }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [pkg, setPkg] = useState('Hajj 2026–2027 (Pre-Register)');
+  const [pkg, setPkg] = useState(`Hajj ${getDynamicSeasonRange(false)} (Pre-Register)`);
   const [pilgrims, setPilgrims] = useState('1');
   const [forwardWhatsApp, setForwardWhatsApp] = useState(true);
   const [submitted, setSubmitted] = useState(false);
@@ -137,7 +138,9 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
                     onChange={(e) => setPkg(e.target.value)}
                     className="w-full border border-[#E5E7EB] rounded-xl px-3 py-2.5 text-xs text-slate-900 focus:ring-2 focus:ring-[#0284C7]/30 focus:border-[#0284C7] outline-none bg-[#F8FAFC] font-medium cursor-pointer"
                   >
-                    <option value="Hajj 2026–2027 (Pre-Register)">Hajj 2026–2027 (Pre-Register)</option>
+                    <option value={`Hajj ${getDynamicSeasonRange(false)} (Pre-Register)`}>
+                      Hajj {getDynamicSeasonRange(false)} (Pre-Register)
+                    </option>
                     <option value="সাশ্রয়ী ফুল প্যাকেজ (৳ ৫,১৩,৬৪৮)">সাশ্রয়ী ফুল প্যাকেজ (৳ ৫,১৩,৬৪৮)</option>
                     <option value="ইকোনমি প্যাকেজ (৳ ৫,৪০,০০০)">ইকোনমি প্যাকেজ (৳ ৫,৪০,০০০)</option>
                     <option value="স্ট্যান্ডার্ড প্যাকেজ (৳ ৬,৪০,০০০)">স্ট্যান্ডার্ড প্যাকেজ (৳ ৬,৪০,০০০)</option>

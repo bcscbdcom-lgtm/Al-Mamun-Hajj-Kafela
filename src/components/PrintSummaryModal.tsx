@@ -23,6 +23,7 @@ import { hajjPackages } from '../data/hajjPackages';
 import { umrahPackages } from '../data/umrahPackages';
 import { faqsData } from '../data/faqs';
 import { toBengaliNumber } from '../utils/dateFormatter';
+import { getDynamicSeasonRange, getDynamicShortSeasonRange } from '../utils/dateUtils';
 
 interface PrintSummaryModalProps {
   lang: Language;
@@ -331,7 +332,9 @@ export const PrintSummaryModal: React.FC<PrintSummaryModalProps> = ({
             {printSection === 'full' && (
               <div className="space-y-3">
                 <div className="font-bold text-sm text-[#0369A1]">
-                  {lang === 'en' ? 'Official Hajj & Umrah 2026–2027 Summary' : 'পবিত্র হজ ও ওমরাহ ২০২৬–২৭ প্যাকেজ ও নির্দেশিকা'}
+                  {lang === 'en'
+                    ? `Official Hajj & Umrah ${getDynamicSeasonRange('en')} Summary`
+                    : `পবিত্র হজ ও ওমরাহ ${getDynamicShortSeasonRange('bn')} প্যাকেজ ও নির্দেশিকা`}
                 </div>
                 <p className="text-slate-600 leading-relaxed">
                   {lang === 'en'
@@ -351,7 +354,9 @@ export const PrintSummaryModal: React.FC<PrintSummaryModalProps> = ({
             {printSection === 'packages' && (
               <div className="space-y-2">
                 <div className="font-bold text-sm text-[#0369A1]">
-                  {lang === 'en' ? 'Hajj 2026–2027 Package Pricing Matrix' : 'হজ ২০২৬–২৭ প্যাকেজ মূল্যতালিকা'}
+                  {lang === 'en'
+                    ? `Hajj ${getDynamicSeasonRange('en')} Package Pricing Matrix`
+                    : `হজ ${getDynamicShortSeasonRange('bn')} প্যাকেজ মূল্যতালিকা`}
                 </div>
                 <table className="w-full text-[11px] border border-slate-200 text-left">
                   <thead className="bg-slate-100 font-bold">

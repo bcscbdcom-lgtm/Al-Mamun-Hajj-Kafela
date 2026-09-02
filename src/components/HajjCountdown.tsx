@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Clock, Sparkles, ArrowRight, CalendarDays } from 'lucide-react';
 import { Language } from '../types';
 import { toBengaliNumber } from '../utils/dateFormatter';
+import { getDynamicSeasonYear } from '../utils/dateUtils';
 
 interface HajjCountdownProps {
   lang: Language;
@@ -17,8 +18,9 @@ interface TimeRemaining {
 }
 
 export const HajjCountdown: React.FC<HajjCountdownProps> = ({ lang, onOpenPreReg }) => {
-  // Target date: Expected Hajj 2027 season start (~May 16, 2027 00:00:00 UTC)
-  const targetDate = new Date('2027-05-16T00:00:00Z');
+  // Target date: Expected Hajj season start (~May 16 of next year UTC)
+  const nextSeasonYear = new Date().getFullYear() + 1;
+  const targetDate = new Date(`${nextSeasonYear}-05-16T00:00:00Z`);
 
   const calculateTimeRemaining = (): TimeRemaining => {
     const now = new Date();
@@ -58,7 +60,9 @@ export const HajjCountdown: React.FC<HajjCountdownProps> = ({ lang, onOpenPreReg
         <div className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-100">
           <CalendarDays className="w-3.5 h-3.5 text-[#0284C7]" />
           <span>
-            {lang === 'en' ? 'Hajj 2027 Pre-Registration' : 'পবিত্র হজ্ব ২০২৭ প্রি-রেজিস্ট্রেশন'}
+            {lang === 'en'
+              ? `Hajj ${getDynamicSeasonYear(1, lang)} Pre-Registration`
+              : `পবিত্র হজ্ব ${getDynamicSeasonYear(1, lang)} প্রি-রেজিস্ট্রেশন`}
           </span>
         </div>
 

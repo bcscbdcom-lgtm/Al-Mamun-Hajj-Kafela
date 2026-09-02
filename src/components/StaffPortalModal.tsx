@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Lock, CheckCircle2, Megaphone, Key, LogOut, TrendingUp, BarChart3, Users, Eye, Sparkles, Flame } from 'lucide-react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Cell } from 'recharts';
 import { Language, NoticeItem } from '../types';
+import { getDynamicSeasonRange } from '../utils/dateUtils';
 
 interface StaffPortalModalProps {
   isOpen: boolean;
@@ -33,10 +34,10 @@ export const StaffPortalModal: React.FC<StaffPortalModalProps> = ({
   const [errorMsg, setErrorMsg] = useState('');
   const [activeTab, setActiveTab] = useState<'analytics' | 'broadcast'>('analytics');
   const [noticeEn, setNoticeEn] = useState(
-    currentNotice?.textEn || 'Hajj 2026–2027 Pre-Registration is now open! Limited slots available.'
+    currentNotice?.textEn || `Hajj ${getDynamicSeasonRange('en')} Pre-Registration is now open! Limited slots available.`
   );
   const [noticeBn, setNoticeBn] = useState(
-    currentNotice?.textBn || 'হজ ২০২৬–২০২৭ এর প্রাক-নিবন্ধন চলছে! সীমিত আসন সংখ্যা।'
+    currentNotice?.textBn || `হজ ${getDynamicSeasonRange('bn')} এর প্রাক-নিবন্ধন চলছে! সীমিত আসন সংখ্যা।`
   );
   const [isActive, setIsActive] = useState(currentNotice ? currentNotice.active : true);
   const [savedSuccess, setSavedSuccess] = useState(false);
