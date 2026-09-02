@@ -11,7 +11,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({ className = "h-10 w-auto",
   if (!imgError) {
     return (
       <img
-        src="/logo.png"
+        src={`${import.meta.env.BASE_URL}logo.png`}
         alt="আল মামুন হজ্ব কাফেলা"
         className={`${className} object-contain transition-transform duration-300 hover:scale-105`}
         referrerPolicy="no-referrer"

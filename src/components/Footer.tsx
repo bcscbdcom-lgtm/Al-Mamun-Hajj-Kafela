@@ -16,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
         <div>
           <a href="#home" className="flex items-center gap-3.5 mb-4 group">
             <div className="inline-flex items-center justify-center bg-white p-2.5 rounded-2xl shadow-md shrink-0">
-              <img src="/logo.png" alt="Al Mamun Hajj Kafela" className="h-12 md:h-14 w-auto object-contain" />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Al Mamun Hajj Kafela" className="h-12 md:h-14 w-auto object-contain" />
             </div>
             <div>
               <div className="text-lg font-black text-white tracking-tight leading-tight">

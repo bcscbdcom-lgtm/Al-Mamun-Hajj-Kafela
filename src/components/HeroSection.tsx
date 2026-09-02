@@ -31,7 +31,7 @@ export const HERO_BACKGROUND_SLIDES: HeroSlide[] = [
     titleBn: 'পবিত্র মসজিদুল হারাম • কাবা শরীফ তাওয়াফ',
     locationEn: 'Makkah Al-Mukarramah',
     locationBn: 'মক্কা আল-মুকাররমা',
-    imageUrl: '/mecca.jpg',
+    imageUrl: `${import.meta.env.BASE_URL}mecca.jpg`,
   },
   {
     id: 'madina-nabawi',
@@ -39,7 +39,7 @@ export const HERO_BACKGROUND_SLIDES: HeroSlide[] = [
     titleBn: 'মসজিদে নববী প্রাঙ্গণ ও ছাতা • মদিনা মুনাওয়ারা',
     locationEn: 'Madinah Al-Munawwarah',
     locationBn: 'মদিনা আল-মুনাওয়ারা',
-    imageUrl: '/madina.jpg',
+    imageUrl: `${import.meta.env.BASE_URL}madina.jpg`,
   },
   {
     id: 'arafat-jabal',
@@ -47,7 +47,7 @@ export const HERO_BACKGROUND_SLIDES: HeroSlide[] = [
     titleBn: 'জাবালে রহমত ও আরাফাতের ময়দান • হজের মূল দিন',
     locationEn: 'Jabal ar-Rahmah, Arafat',
     locationBn: 'জাবালে রহমত, আরাফাত',
-    imageUrl: '/arafat.avif',
+    imageUrl: `${import.meta.env.BASE_URL}arafat.avif`,
   }
 ];
 
