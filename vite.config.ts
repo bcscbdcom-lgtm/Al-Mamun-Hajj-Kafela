@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/Al-Mamun-Hajj-Kafela/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
