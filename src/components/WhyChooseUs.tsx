@@ -47,7 +47,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ lang }) => {
           {lang === 'en' ? 'Why Choose Us' : 'আমাদের শ্রেষ্ঠত্ব'}
         </span>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0369A1] mt-3 tracking-tight">
-          {lang === 'en' ? 'Why families choose Al Mamun Hazz Kafela' : 'কেন হাজীগণ আল মামুন হজ্ব কাফেলাকেই বেছে নেন?'}
+          {lang === 'en' ? 'Why families choose Al Mamun Hajj Kafela' : 'কেন হাজীগণ আল মামুন হজ্ব কাফেলাকেই বেছে নেন?'}
         </h2>
         <p className="text-slate-600 text-sm mt-3">
           {lang === 'en'

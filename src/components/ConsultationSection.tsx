@@ -87,8 +87,8 @@ export const ConsultationSection: React.FC<ConsultationSectionProps> = ({ lang }
 
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#0284C7] flex-shrink-0" />
-                <a href="mailto:almamunhazzkhulna@gmail.com" className="hover:text-white transition">
-                  almamunhazzkhulna@gmail.com
+                <a href="mailto:almamunhajjkhulna@gmail.com" className="hover:text-white transition">
+                  almamunhajjkhulna@gmail.com
                 </a>
               </div>
 

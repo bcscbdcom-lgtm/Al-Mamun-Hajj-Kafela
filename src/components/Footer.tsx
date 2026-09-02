@@ -1,6 +1,7 @@
 import React from 'react';
-import { Compass, MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react';
 import { Language } from '../types';
+import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
   lang: Language;
@@ -13,16 +14,21 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
         
         {/* Column 1: Logo & About & Socials */}
         <div>
-          <a href="#home" className="flex items-center gap-2.5 mb-3">
-            <div className="w-8 h-8 bg-white/15 rounded-lg flex items-center justify-center text-white text-sm shadow-xs border border-white/20">
-              <Compass className="w-4 h-4 text-sky-200" />
+          <a href="#home" className="flex items-center gap-3.5 mb-4 group">
+            <div className="inline-flex items-center justify-center bg-white p-2.5 rounded-2xl shadow-md shrink-0">
+              <img src="/logo.png" alt="Al Mamun Hajj Kafela" className="h-12 md:h-14 w-auto object-contain" />
             </div>
-            <div className="text-lg font-black text-white tracking-tight">
-              {lang === 'en' ? (
-                <>AL MAMUN<span className="text-sky-200 ml-0.5">HAZZ KAFELA</span></>
-              ) : (
-                <>আল মামুন<span className="text-sky-200 ml-0.5">হজ্ব কাফেলা</span></>
-              )}
+            <div>
+              <div className="text-lg font-black text-white tracking-tight leading-tight">
+                {lang === 'en' ? (
+                  <>AL MAMUN<span className="text-sky-200 ml-1">HAJJ KAFELA</span></>
+                ) : (
+                  <>আল মামুন<span className="text-sky-200 ml-1">হজ্ব কাফেলা</span></>
+                )}
+              </div>
+              <div className="text-[10px] font-semibold text-sky-200 tracking-wider uppercase mt-0.5">
+                {lang === 'en' ? 'Khulna, Bangladesh' : 'পাওয়ার হাউজ মোড়, খুলনা'}
+              </div>
             </div>
           </a>
 
@@ -81,12 +87,12 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
               </a>
             </li>
             <li>
-              <a href="#packages" className="hover:text-white transition">
+              <a href="#hajj-packages" className="hover:text-white transition">
                 {lang === 'en' ? 'Hajj Packages (2026–2027)' : 'হজ প্যাকেজসমূহ (২০২৬–২৭)'}
               </a>
             </li>
             <li>
-              <a href="#umrah" className="hover:text-white transition">
+              <a href="#umrah-packages" className="hover:text-white transition">
                 {lang === 'en' ? 'Umrah Departure Schedule' : 'ওমরাহ কাফেলার সময়সূচি'}
               </a>
             </li>
@@ -128,7 +134,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             </p>
             <p className="flex items-center gap-2.5">
               <Mail className="w-4 h-4 text-sky-200 flex-shrink-0" />
-              <span>almamunhazzkhulna@gmail.com</span>
+              <span>almamunhajjkhulna@gmail.com</span>
             </p>
             <p className="flex items-center gap-2.5">
               <Clock className="w-4 h-4 text-sky-200 flex-shrink-0" />
@@ -175,7 +181,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-sky-800/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-sky-200/80">
         <div>
-          © {new Date().getFullYear()} আল মামুন হজ্ব কাফেলা (AL MAMUN HAZZ KAFELA, KHULNA). All rights reserved.
+          © {new Date().getFullYear()} আল মামুন হজ্ব কাফেলা (AL MAMUN HAJJ KAFELA, KHULNA). All rights reserved.
         </div>
         <div className="flex items-center gap-6 font-semibold text-sky-200">
           <a href="#about" className="hover:text-white hover:underline">

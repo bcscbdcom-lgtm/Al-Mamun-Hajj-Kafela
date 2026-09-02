@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Menu, X, Compass, PhoneCall } from 'lucide-react';
+import { Globe, Menu, X, PhoneCall } from 'lucide-react';
 import { Language } from '../types';
+import { BrandLogo } from './BrandLogo';
 
 interface NavbarProps {
   lang: Language;
@@ -53,19 +54,17 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Left: Brand Logo & Title */}
-          <a href="#home" className="flex items-center gap-3 group shrink-0">
-            <div className="w-10 h-10 bg-[#E0F2FE] rounded-xl flex items-center justify-center text-[#0284C7] text-lg shadow-xs group-hover:bg-[#0284C7] group-hover:text-white transition-colors border border-[#BAE6FD]">
-              <Compass className="w-5 h-5 text-[#0284C7] group-hover:text-white transition-colors" />
-            </div>
+          <a href="#home" className="flex items-center gap-3.5 group shrink-0 py-1">
+            <BrandLogo className="h-14 md:h-16 w-auto shrink-0 object-contain scale-110" />
             <div>
               <div className="text-lg sm:text-xl font-black text-[#0369A1] tracking-tight leading-none">
                 {lang === 'en' ? (
-                  <>AL MAMUN<span className="text-[#0284C7] ml-1.5 font-bold">HAZZ KAFELA</span></>
+                  <>AL MAMUN<span className="text-[#0284C7] ml-1.5 font-bold">HAJJ KAFELA</span></>
                 ) : (
                   <>আল মামুন<span className="text-[#0284C7] ml-1.5 font-bold">হজ্ব কাফেলা</span></>
                 )}
               </div>
-              <div className="text-[10px] font-semibold text-slate-500 tracking-wider uppercase mt-1">
+              <div className="text-[11px] font-bold text-slate-500 tracking-wider uppercase mt-1">
                 {lang === 'en' ? 'Khulna, Bangladesh' : 'পাওয়ার হাউজ মোড়, খুলনা'}
               </div>
             </div>

@@ -180,7 +180,7 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
                 <span className="text-[11px] text-[#334155] flex items-center gap-1">
                   <MessageCircle className="w-3 h-3 text-[#0369A1]" />
                   {lang === 'en'
-                    ? 'Also send copy directly to Al Mamun Hazz Kafela WhatsApp'
+                    ? 'Also send copy directly to Al Mamun Hajj Kafela WhatsApp'
                     : 'একই সাথে আমাদের অফিশিয়াল হোয়াটসঅ্যাপে মেসেজ পাঠান'}
                 </span>
               </label>

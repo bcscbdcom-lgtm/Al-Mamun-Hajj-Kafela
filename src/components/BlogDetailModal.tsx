@@ -68,7 +68,7 @@ export const BlogDetailModal: React.FC<BlogDetailModalProps> = ({ lang, article,
         <div className="mt-8 pt-6 border-t border-[#E5E7EB] flex items-center justify-between">
           <div className="text-xs font-bold text-[#0369A1] flex items-center gap-1.5">
             <BookOpen className="w-4 h-4 text-[#0284C7]" />
-            <span>Al Mamun Hazz Kafela Research & Shariah Desk</span>
+            <span>Al Mamun Hajj Kafela Research & Shariah Desk</span>
           </div>
           <button
             onClick={onClose}

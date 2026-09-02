@@ -50,7 +50,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ lang }) => {
 
       {/* WhatsApp Inquiry Action Button with Notification Pulse */}
       <a
-        href="https://wa.me/8801712864077?text=Assalamu%20Alaikum%20Al%20Mamun%20Hazz%20Kafela%2C%20I%20want%20to%20inquire%20about%20Hajj%20%26%20Umrah%20packages."
+        href="https://wa.me/8801712864077?text=Assalamu%20Alaikum%20Al%20Mamun%20Hajj%20Kafela%2C%20I%20want%20to%20inquire%20about%20Hajj%20%26%20Umrah%20packages."
         target="_blank"
         rel="noreferrer"
         className="relative group bg-[#0284C7] hover:bg-[#0369A1] text-white rounded-full sm:rounded-2xl p-3 sm:py-3 sm:px-4 flex items-center gap-2.5 shadow-xl hover:scale-[1.03] transition duration-300 border border-[#BAE6FD]"

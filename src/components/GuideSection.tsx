@@ -31,7 +31,7 @@ export const GuideSection: React.FC<GuideSectionProps> = ({ lang, onOpenPreReg }
           </h2>
           <p className="text-emerald-100 text-sm leading-relaxed mt-3">
             {lang === 'en'
-              ? 'Each Al Mamun Hazz Kafela group is accompanied by certified Islamic scholars with deep knowledge of Hajj rites, Arabic, and holy places. They walk every step with you — from the first Niyyah to your safe return home.'
+              ? 'Each Al Mamun Hajj Kafela group is accompanied by certified Islamic scholars with deep knowledge of Hajj rites, Arabic, and holy places. They walk every step with you — from the first Niyyah to your safe return home.'
               : 'আল মামুন হজ্ব কাফেলার প্রতিটি কাফেলা অভিজ্ঞ আলেম ও মুফতি আমানুল্লাহ সাহেবের নেতৃত্বে পরিচালিত হয়। ইহরাম বাঁধা থেকে শুরু করে প্রতিটি রোকন সহীহভাবে পালনে আপনি পাবেন সার্বক্ষণিক দিকনির্দেশনা।'}
           </p>
         </div>

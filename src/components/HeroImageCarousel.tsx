@@ -47,7 +47,7 @@ export const HERO_SLIDES: CarouselSlide[] = [
     locationBn: 'মসজিদুল হারাম, মক্কা মুকাররমা',
     seasonEn: 'Hajj & Umrah 2026-2027',
     seasonBn: 'হজ ও ওমরাহ ২০২৬-২০২৭',
-    descriptionEn: 'Al Mamun Hazz Kafela pilgrims performing their welcome Tawaf together under the direct spiritual guidance of Mufti Amanullah.',
+    descriptionEn: 'Al Mamun Hajj Kafela pilgrims performing their welcome Tawaf together under the direct spiritual guidance of Mufti Amanullah.',
     descriptionBn: 'মুফতী আমানুল্লাহ সাহেবের সার্বক্ষণিক তত্ত্বাবধানে আল মামুন কাফেলার সম্মানিত হাজীদের তাওয়াফ সমাপন।',
     badgeEn: 'Makkah Al-Mukarramah',
     badgeBn: 'মক্কা আল-মুকাররমা',
@@ -394,7 +394,7 @@ export const HeroImageCarousel: React.FC<HeroImageCarouselProps> = ({
           <CheckCircle2 className="w-3.5 h-3.5 text-[#0284C7] flex-shrink-0" />
           <span className="font-medium">
             {lang === 'en'
-              ? 'Real archive photos from Al Mamun Hazz Kafela Khulna caravans.'
+              ? 'Real archive photos from Al Mamun Hajj Kafela Khulna caravans.'
               : 'আল মামুন হজ্ব কাফেলা খুলনার বিগত হজ-ওমরাহ সফরের বাস্তব স্থিরচিত্র।'}
           </span>
         </div>
@@ -475,7 +475,7 @@ export const HeroImageCarousel: React.FC<HeroImageCarouselProps> = ({
                   {lang === 'en' ? currentSlide.descriptionEn : currentSlide.descriptionBn}
                 </p>
                 <div className="flex items-center gap-3 text-xs text-sky-400 mt-2 font-medium">
-                  <span>✦ Al Mamun Hazz Kafela, Khulna</span>
+                  <span>✦ Al Mamun Hajj Kafela, Khulna</span>
                   <span>•</span>
                   <span>Director: Mufti Amanullah</span>
                 </div>

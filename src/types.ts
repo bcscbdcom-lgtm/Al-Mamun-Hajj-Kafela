@@ -162,8 +162,8 @@ export interface FAQItem {
   questionBn: string;
   answerEn: string;
   answerBn: string;
-  category: 'booking' | 'visa' | 'requirements' | 'cost' | 'elderly' | 'general' | 'hajj' | 'umrah';
-  segment?: 'general' | 'hajj' | 'umrah' | 'all';
+  category: 'registration' | 'packages' | 'guidelines' | 'all' | string;
+  segment?: 'general' | 'hajj' | 'umrah' | 'all' | string;
   isPopular?: boolean;
   initialClicks?: number;
   helpfulScore?: number;

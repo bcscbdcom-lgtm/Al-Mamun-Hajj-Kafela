@@ -111,7 +111,7 @@ const DOCUMENT_ITEMS: DocumentItem[] = [
     category: 'biometric',
     titleEn: 'Nusuk / e-Haj Ministry Portal Registration QR',
     titleBn: 'নুসুক (Nusuk) / ই-হজ প্ল্যাটফর্ম রেজিস্ট্রেশন কিউআর',
-    detailEn: 'Official digital pilgrim profile generation linked with Al Mamun Hazz Kafela.',
+    detailEn: 'Official digital pilgrim profile generation linked with Al Mamun Hajj Kafela.',
     detailBn: 'আল মামুন হজ্ব কাফেলার অধীনে ধর্ম মন্ত্রণালয়ের ই-হজ পোর্টাল ও সৌদি নুসুক প্ল্যাটফর্মে ডিজিটাল আইডি ও কিউআর।',
     mandatory: true,
     applicableTo: ['bangladeshi_resident', 'bangladeshi_nrb', 'foreign_national'],
@@ -216,7 +216,7 @@ export const EssentialDocumentsWalkthrough: React.FC<EssentialDocumentsWalkthrou
 
     const lines: string[] = [
       '========================================================================',
-      '                     AL MAMUN HAZZ KAFELA, KHULNA',
+      '                     AL MAMUN HAJJ KAFELA, KHULNA',
       '           OFFICIAL HAJJ VISA & TRAVEL DOCUMENT CHECKLIST',
       '========================================================================',
       `Pilgrim Nationality Category: ${lang === 'en' ? nationalityLabelEn : nationalityLabelBn}`,
@@ -247,9 +247,9 @@ export const EssentialDocumentsWalkthrough: React.FC<EssentialDocumentsWalkthrou
     lines.push('4. Do not staple, fold or laminate passport visa pages.');
     lines.push('5. Complete biometric scan on Saudi Visa Bio app before final visa issuance.');
     lines.push('------------------------------------------------------------------------');
-    lines.push('AL MAMUN HAZZ KAFELA, KHULNA - Trusted Hajj & Umrah Service Provider');
+    lines.push('AL MAMUN HAJJ KAFELA, KHULNA - Trusted Hajj & Umrah Service Provider');
     lines.push('Address: Power House More, Oikko Bhaban, KCC Market (3rd Floor, Misti Mahal), Khulna');
-    lines.push('Hotlines: 01712-864077, 01676-500395 | Email: almamunhazzkhulna@gmail.com');
+    lines.push('Hotlines: 01712-864077, 01676-500395 | Email: almamunhajjkhulna@gmail.com');
     lines.push('========================================================================');
 
     const fileContent = lines.join('\n');

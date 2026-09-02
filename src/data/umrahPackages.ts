@@ -30,7 +30,7 @@ export const umrahPackages: PackageItem[] = [
     totalSeats: 40,
     availabilityBadgeEn: 'Booking Open (Limited Seats)',
     availabilityBadgeBn: 'বুকিং চলছে (সীমিত আসন)',
-    itinerarySummaryEn: '01 to 10 October 2026 special low-cost Umrah caravan by Al Mamun Hazz Kafela with complete visa, air ticket, 500-800m hotel, transport, 3 meals daily, and historical Ziyarah.',
+    itinerarySummaryEn: '01 to 10 October 2026 special low-cost Umrah caravan by Al Mamun Hajj Kafela with complete visa, air ticket, 500-800m hotel, transport, 3 meals daily, and historical Ziyarah.',
     itinerarySummaryBn: '০১ থেকে ১০ অক্টোবর ২০২৬ আল মামুন হজ্ব কাফেলা পরিচালিত স্বল্প খরচে বিশেষ উমরাহ প্যাকেজ — ভিসা, ট্রানজিট এয়ার টিকিট, ৫০০-৮০০ মিটার হোটেল, খাবার ও জিয়ারাহ অন্তর্ভুক্ত।',
     highlightsEn: [
       'Journey Dates: 01 October 2026 to 10 October 2026 (10 Days)',

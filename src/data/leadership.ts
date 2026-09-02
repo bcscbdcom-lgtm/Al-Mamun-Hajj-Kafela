@@ -5,17 +5,17 @@ export const agencyLeadershipData: LeadershipMember[] = [
     id: 'mufti-amanullah',
     nameEn: 'Al-Haj Hazrat Mawlana Mufti Amanullah',
     nameBn: 'আলহাজ্ব হযরত মাওলানা মুফতী আমানুল্লাহ',
-    roleEn: 'Shariah Consultant & Director, Al Mamun Hazz Kafela',
+    roleEn: 'Shariah Consultant & Director, Al Mamun Hajj Kafela',
     roleBn: 'শরিয়াহ কনসালটেন্ট ও পরিচালক, আল মামুন হজ্ব কাফেলা',
     titleEn: 'Naib-e-Muhtamim, Khadijatul Kubra Mohila Madrasa, Sheikhpara, Khulna',
     titleBn: 'নায়েবে মুহতামিম, খাদিজাতুল কুবরা মহিলা মাদ্রাসা, শেখপাড়া, খুলনা',
     yearsOfService: 22,
     hajjCaravansLed: 28,
     image: '/images/scholars/khalilur-rahman.svg',
-    bioEn: 'Eminent Islamic scholar and Shariah Consultant of Al Mamun Hazz Kafela. Serving as Naib-e-Muhtamim at Khadijatul Kubra Mohila Madrasa, Sheikhpara, Khulna. Personally guides pilgrims following the authentic Sunnah of Prophet Muhammad (ﷺ).',
+    bioEn: 'Eminent Islamic scholar and Shariah Consultant of Al Mamun Hajj Kafela. Serving as Naib-e-Muhtamim at Khadijatul Kubra Mohila Madrasa, Sheikhpara, Khulna. Personally guides pilgrims following the authentic Sunnah of Prophet Muhammad (ﷺ).',
     bioBn: 'আল মামুন হজ্ব কাফেলা এর সম্মানিত শরিয়াহ কনসালটেন্ট ও পরিচালক। নায়েবে মুহতামিম, খাদিজাতুল কুবরা মহিলা মাদ্রাসা, শেখপাড়া, খুলনা। দীর্ঘ দুই দশকের বেশি সময় ধরে সহীহ সুন্নাহ মোতাবেক হজ ও ওমরাহ পরিচালনায় নিবেদিতপ্রাণ।',
     credentialsEn: [
-      'Shariah Consultant & Director, Al Mamun Hazz Kafela',
+      'Shariah Consultant & Director, Al Mamun Hajj Kafela',
       'Naib-e-Muhtamim, Khadijatul Kubra Mohila Madrasa, Sheikhpara, Khulna',
       'Specialist in Fiqh al-Hajj, Umrah & Islamic Jurisprudence',
       'Experienced Caravan Leader for Hajj & Umrah Pilgrims from Khulna'
@@ -42,7 +42,7 @@ export const agencyLeadershipData: LeadershipMember[] = [
     certificateTitleEn: 'Shariah Advisory & Pilgrimage Mentor Authorization',
     certificateTitleBn: 'শরিয়াহ কনসালটেন্ট ও প্রধান ধর্মীয় নির্দেশক সনদ',
     certificateNo: 'MAMUN-KHU/SCH-01/2026',
-    email: 'mufti.amanullah@almamunhazz.com',
+    email: 'mufti.amanullah@almamunhajj.com',
     phone: '01712-864077'
   },
   {
@@ -86,7 +86,7 @@ export const agencyLeadershipData: LeadershipMember[] = [
     certificateTitleEn: 'Agency Proprietorship & Management Recognition',
     certificateTitleBn: 'কাফেলা ব্যবস্থাপনা ও প্রাতিষ্ঠানিক সনদ',
     certificateNo: 'MAMUN-KHU/MGT-02/2026',
-    email: 'info@almamunhazz.com',
+    email: 'info@almamunhajj.com',
     phone: '01676-500395'
   }
 ];

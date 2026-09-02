@@ -27,7 +27,7 @@ export const NoticeBanner: React.FC<NoticeBannerProps> = ({ lang, notice, onDism
       if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted') {
         const title =
           lang === 'en'
-            ? '🕋 Al Mamun Hazz Kafela: Urgent Update & Slot Notice'
+            ? '🕋 Al Mamun Hajj Kafela: Urgent Update & Slot Notice'
             : '🕋 জরুরি হজ বিজ্ঞপ্তি - আল মামুন হজ্ব কাফেলা';
         const bodyText = lang === 'en' ? notice.textEn : notice.textBn;
 
@@ -91,7 +91,7 @@ export const NoticeBanner: React.FC<NoticeBannerProps> = ({ lang, notice, onDism
         if (notice) {
           const title =
             lang === 'en'
-              ? '🕋 Al Mamun Hazz Kafela Notifications Enabled!'
+              ? '🕋 Al Mamun Hajj Kafela Notifications Enabled!'
               : '🕋 আল মামুন হজ্ব কাফেলা নোটিফিকেশন চালু হয়েছে!';
           const bodyText =
             lang === 'en'

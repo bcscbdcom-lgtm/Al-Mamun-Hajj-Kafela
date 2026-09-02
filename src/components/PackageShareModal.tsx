@@ -27,13 +27,13 @@ export const PackageShareModal: React.FC<PackageShareModalProps> = ({
   const pkgHotel = lang === 'en' ? pkg.hotelMakkahEn : pkg.hotelMakkahBn;
 
   // Generate shareable URL with package anchor/query
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://almamunhazzkafela.com';
-  const shareUrl = `${origin}/#${pkg.type === 'hajj' ? 'packages' : 'umrah'}?package=${pkg.id}`;
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://almamunhajjkafela.com';
+  const shareUrl = `${origin}/#${pkg.type === 'hajj' ? 'hajj-packages' : 'umrah-packages'}?package=${pkg.id}`;
 
-  const shareTitle = `Al Mamun Hazz Kafela — ${pkgName} (${pkgPrice})`;
+  const shareTitle = `Al Mamun Hajj Kafela — ${pkgName} (${pkgPrice})`;
   const shareText =
     lang === 'en'
-      ? `Assalamu Alaikum! Check out the "${pkgName}" (${pkgPrice}, ${pkgDuration}) at Al Mamun Hazz Kafela.\nHotel: ${pkgHotel}\nDetails: ${shareUrl}`
+      ? `Assalamu Alaikum! Check out the "${pkgName}" (${pkgPrice}, ${pkgDuration}) at Al Mamun Hajj Kafela.\nHotel: ${pkgHotel}\nDetails: ${shareUrl}`
       : `আসসালামু আলাইকুম! আল মামুন হজ্ব কাফেলার "${pkgName}" (${pkgPrice}, ${pkgDuration}) প্যাকেজটি দেখুন।\nহোটেল: ${pkgHotel}\nবিস্তারিত: ${shareUrl}`;
 
   const handleCopyLink = async () => {

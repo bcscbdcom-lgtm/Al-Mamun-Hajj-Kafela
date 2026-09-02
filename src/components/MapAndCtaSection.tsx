@@ -26,7 +26,7 @@ export const MapAndCtaSection: React.FC<MapAndCtaSectionProps> = ({ lang }) => {
             </h2>
             <p className="text-emerald-100 text-sm leading-relaxed max-w-md">
               {lang === 'en'
-                ? 'Speak with an Al Mamun Hazz Kafela advisor today for honest guidance on Hajj pre-registration and upcoming Umrah slots.'
+                ? 'Speak with an Al Mamun Hajj Kafela advisor today for honest guidance on Hajj pre-registration and upcoming Umrah slots.'
                 : 'আজই আল মামুন হজ্ব কাফেলার অভিজ্ঞ পরিচালকদের সাথে কথা বলে জেনে নিন আপনার জন্য সবচেয়ে উপযোগী হজ বা ওমরাহ প্যাকেজ।'}
             </p>
           </div>
@@ -41,7 +41,7 @@ export const MapAndCtaSection: React.FC<MapAndCtaSectionProps> = ({ lang }) => {
             </a>
 
             <a
-              href="https://wa.me/8801712864077?text=Assalamu%20Alaikum%2C%20I%20would%20like%20to%20know%20more%20about%20Al%20Mamun%20Hazz%20Kafela%20packages."
+              href="https://wa.me/8801712864077?text=Assalamu%20Alaikum%2C%20I%20would%20like%20to%20know%20more%20about%20Al%20Mamun%20Hajj%20Kafela%20packages."
               target="_blank"
               rel="noreferrer"
               className="bg-[#0369A1] hover:bg-[#07301e] text-white border border-[#BAE6FD] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2"
@@ -85,7 +85,7 @@ export const MapAndCtaSection: React.FC<MapAndCtaSectionProps> = ({ lang }) => {
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Al Mamun Hazz Kafela Khulna Office Location"
+              title="Al Mamun Hajj Kafela Khulna Office Location"
             ></iframe>
           </div>
         </div>

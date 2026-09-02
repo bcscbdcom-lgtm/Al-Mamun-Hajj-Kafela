@@ -10,7 +10,7 @@ export const testimonialsData: Testimonial[] = [
     packageTypeEn: 'Standard Hajj Package',
     packageTypeBn: 'স্ট্যান্ডার্ড হজ প্যাকেজ',
     year: '2025',
-    textEn: 'Alhamdulillah! It has been a pleasure to do Hajj with the Al Mamun Hazz Kafela team. From spiritual motivation, pre-hajj training to tackling airport and Mina crowd problems while keeping Hajis united — they deserve high appreciation.',
+    textEn: 'Alhamdulillah! It has been a pleasure to do Hajj with the Al Mamun Hajj Kafela team. From spiritual motivation, pre-hajj training to tackling airport and Mina crowd problems while keeping Hajis united — they deserve high appreciation.',
     textBn: 'আলহামদুলিল্লাহ! আল মামুন হজ্ব কাফেলার সাথে আমাদের হজ সফর ছিল অত্যন্ত প্রশান্তিদায়ক। শুরু থেকে শেষ পর্যন্ত প্রতিটি পদক্ষেপে বিজ্ঞ আলেমদের সঠিক সহায়তা পেয়েছি। মিনা-আরাফাতে তাদের খাবারের মান ও আন্তরিকতা ছিল অসাধারণ।'
   },
   {
@@ -22,7 +22,7 @@ export const testimonialsData: Testimonial[] = [
     packageTypeEn: 'VIP Umrah Comfort',
     packageTypeBn: 'ভিআইপি ওমরাহ কমফোর্ট',
     year: '2025',
-    textEn: 'I had the honor of going to Umrah with my elderly parents. So well-organized and spiritually uplifting that my father who had performed Hajj twice before became a true admirer of Al Mamun Hazz Kafela\'s dedication.',
+    textEn: 'I had the honor of going to Umrah with my elderly parents. So well-organized and spiritually uplifting that my father who had performed Hajj twice before became a true admirer of Al Mamun Hajj Kafela\'s dedication.',
     textBn: 'বাবা-মাকে নিয়ে ওমরাহ পালন করেছিলাম। হোটেল আবাসন এবং খাবারের ব্যবস্থা ছিল চমৎকার। প্রবীণদের যেভাবে তারা যত্ন নিয়েছেন এবং হুইলচেয়ার সাপোর্ট দিয়েছেন তা সত্যিই প্রশংসনীয়। জাযাকাল্লাহু খাইরান!'
   },
   {
@@ -77,9 +77,9 @@ export const blogArticlesData: BlogArticle[] = [
 5. **Luggage Dimensions & Weight**: Strict adherence to the 2x23kg checked baggage allowance plus 7kg cabin baggage. Avoid tying loose ropes around suitcases; use approved zip straps.
 6. **Health & Vaccination Requirements**: Mandatory Meningococcal ACWY and updated COVID-19/Influenza vaccinations documented in the health card.
 7. **Cash & Foreign Currency Declarations**: Carry Saudi Riyals (SAR) or international debit/credit cards. Amounts exceeding SAR 60,000 equivalent must be formally declared at Saudi customs.
-8. **Transportation with Al Mamun Hazz Kafela**: Dedicated air-conditioned coasters and Haramain high-speed rail tickets ensure fast, fatigue-free movement.
+8. **Transportation with Al Mamun Hajj Kafela**: Dedicated air-conditioned coasters and Haramain high-speed rail tickets ensure fast, fatigue-free movement.
 9. **Respecting Haram Security**: Photography during active Tawaf or blocking walkways for selfies is prohibited. Keep awareness focused on devotion and remembrance of Allah.
-10. **Emergency Medical Cards**: Keep your Al Mamun Hazz Kafela lanyard, hotel location card, and Saudi emergency contact numbers on you at all times.`,
+10. **Emergency Medical Cards**: Keep your Al Mamun Hajj Kafela lanyard, hotel location card, and Saudi emergency contact numbers on you at all times.`,
     contentBn: `পবিত্র সৌদি সরকারের হজ ও ওমরাহ মন্ত্রণালয় হাজীদের সফরকে আরও সহজ ও শৃঙ্খলিত করতে বেশ কিছু নতুন দিকনির্দেশনা কার্যকর করেছে:
 
 ১. **নুসুক (Nusuk) অ্যাপে রওজা পারমিট**: মসজিদে নববীতে রওজা শরিফ জিয়ারতের জন্য নুসুক অ্যাপে নির্ধারিত স্লট বুকিং বাধ্যতামূলক।
@@ -153,7 +153,7 @@ export const blogArticlesData: BlogArticle[] = [
     contentEn: `The 9th of Dhul Hijjah is the greatest day of the Islamic year. The Messenger of Allah (PBUH) said: "Hajj is Arafah." (Sunan an-Nasa'i).
 
 ### Key Pillars of Wuquf at Arafat:
-- **Arrival at Arafat**: Pilgrims move from Mina to Arafat after sunrise on the 9th of Dhul Hijjah in air-conditioned coaches arranged by Al Mamun Hazz Kafela.
+- **Arrival at Arafat**: Pilgrims move from Mina to Arafat after sunrise on the 9th of Dhul Hijjah in air-conditioned coaches arranged by Al Mamun Hajj Kafela.
 - **Combined Prayer at Dhuhr Time**: Combining and shortening Dhuhr and Asr prayers (2 rakats each) with one Adhan and two Iqamahs.
 - **Continuous Supplication until Sunset**: From afternoon until sunset, pilgrims stand with raised hands outside their tents, crying to Allah for mercy, cleansing of past sins, and salvation for their loved ones and the Muslim Ummah.
 - **Departure to Muzdalifah**: As soon as the sun sets, pilgrims depart directly to Muzdalifah without praying Maghrib at Arafat, praying Maghrib and Isha combined in Muzdalifah.`,

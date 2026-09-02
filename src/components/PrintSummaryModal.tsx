@@ -187,7 +187,7 @@ export const PrintSummaryModal: React.FC<PrintSummaryModalProps> = ({
             <div className="flex items-start justify-between border-b pb-3 border-slate-200">
               <div>
                 <h3 className="text-base font-black text-slate-900 tracking-tight">
-                  AL MAMUN HAZZ KAFELA, KHULNA • আল মামুন হজ্ব কাফেলা
+                  AL MAMUN HAJJ KAFELA, KHULNA • আল মামুন হজ্ব কাফেলা
                 </h3>
                 {includeLicence && (
                   <p className="text-[11px] text-slate-600 font-medium">
@@ -335,7 +335,7 @@ export const PrintSummaryModal: React.FC<PrintSummaryModalProps> = ({
                 </div>
                 <p className="text-slate-600 leading-relaxed">
                   {lang === 'en'
-                    ? 'AL MAMUN HAZZ KAFELA, KHULNA provides authentic Sunnah-aligned Hajj and Umrah services with quality hotel accommodations, experienced guidance by Mufti Amanullah, and hassle-free visa processing.'
+                    ? 'AL MAMUN HAJJ KAFELA, KHULNA provides authentic Sunnah-aligned Hajj and Umrah services with quality hotel accommodations, experienced guidance by Mufti Amanullah, and hassle-free visa processing.'
                     : 'আল মামুন হজ্ব কাফেলা, খুলনা এর পরিচালনায় সহীহ সুন্নাহ মোতাবেক হজ ও ওমরাহ পালন, মানসম্মত হোটেল ও খাবার এবং সার্বক্ষণিক অভিজ্ঞ আলেমদের প্রত্যক্ষ গাইডেন্স।'}
                 </p>
                 <div className="grid grid-cols-2 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-lg border border-slate-200">

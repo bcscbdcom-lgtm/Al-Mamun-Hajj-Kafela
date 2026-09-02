@@ -364,7 +364,7 @@ export const PackageCompareModal: React.FC<PackageCompareModalProps> = ({
 
                           <a
                             href={`https://wa.me/8801712864077?text=${encodeURIComponent(
-                              `Assalamu Alaikum, I compared and am interested in "${name}" (${price}) at Al Mamun Hazz Kafela.`
+                              `Assalamu Alaikum, I compared and am interested in "${name}" (${price}) at Al Mamun Hajj Kafela.`
                             )}`}
                             target="_blank"
                             rel="noreferrer"

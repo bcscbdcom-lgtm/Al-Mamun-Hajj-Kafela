@@ -163,7 +163,7 @@ export const FaqPrintPreviewModal: React.FC<FaqPrintPreviewModalProps> = ({
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
                   <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                    AL MAMUN HAZZ KAFELA, KHULNA
+                    AL MAMUN HAJJ KAFELA, KHULNA
                   </h1>
                   <p className="text-xs font-bold text-slate-700">
                     {isEn
@@ -250,7 +250,7 @@ export const FaqPrintPreviewModal: React.FC<FaqPrintPreviewModalProps> = ({
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                   <span>
                     {isEn
-                      ? 'Verified by Al Mamun Hazz Kafela Shariah Guidance Desk & Ministry of Religious Affairs Guidelines'
+                      ? 'Verified by Al Mamun Hajj Kafela Shariah Guidance Desk & Ministry of Religious Affairs Guidelines'
                       : 'আল মামুন হজ্ব কাফেলা শরিয়াহ ডেস্ক ও ধর্ম মন্ত্রণালয়ের নীতিমালা অনুযায়ী পরীক্ষিত ও সত্যায়িত'}
                   </span>
                 </div>

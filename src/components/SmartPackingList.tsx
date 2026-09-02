@@ -468,7 +468,7 @@ export const SmartPackingList: React.FC<SmartPackingListProps> = ({
 
     const lines: string[] = [
       '========================================================================',
-      '                     AL MAMUN HAZZ KAFELA, KHULNA',
+      '                     AL MAMUN HAJJ KAFELA, KHULNA',
       '               SMART PILGRIMAGE PACKING CHECKLIST',
       '========================================================================',
       `Pilgrimage Target: ${journeyLabel}`,
@@ -511,9 +511,9 @@ export const SmartPackingList: React.FC<SmartPackingListProps> = ({
     lines.push('IMPORTANT LUGGAGE & AIRLINE TIPS:');
     lines.push('1. Keep Powerbanks and daily medications in your 7kg Cabin bag, NOT in checked luggage.');
     lines.push('2. Scissor, nail clippers and liquids >100ml must be in 28" Checked luggage.');
-    lines.push('3. Affix Al Mamun Hazz Kafela luggage identification tags with mobile number on all bags.');
+    lines.push('3. Affix Al Mamun Hajj Kafela luggage identification tags with mobile number on all bags.');
     lines.push('------------------------------------------------------------------------');
-    lines.push('AL MAMUN HAZZ KAFELA - Power House More, Oikko Bhaban, KCC Market, Khulna | Hotline: 01712-864077, 01676-500395');
+    lines.push('AL MAMUN HAJJ KAFELA - Power House More, Oikko Bhaban, KCC Market, Khulna | Hotline: 01712-864077, 01676-500395');
     lines.push('========================================================================');
 
     const content = lines.join('\n');
@@ -521,7 +521,7 @@ export const SmartPackingList: React.FC<SmartPackingListProps> = ({
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `Al_Mamun_Hazz_Packing_List_${journeyType}_${season}.txt`;
+    link.download = `Al_Mamun_Hajj_Packing_List_${journeyType}_${season}.txt`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -919,7 +919,7 @@ export const SmartPackingList: React.FC<SmartPackingListProps> = ({
       <div className="pt-4 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-slate-500 text-center sm:text-left">
           {lang === 'en'
-            ? 'Need complimentary Ihram kits, luggage tags, and medical supplies provided by Al Mamun Hazz Kafela?'
+            ? 'Need complimentary Ihram kits, luggage tags, and medical supplies provided by Al Mamun Hajj Kafela?'
             : 'আল মামুন হজ্ব কাফেলা কর্তৃক ফ্রি ইহরাম কিট, নেইম ট্যাগ ও স্বাস্থ্য সুরক্ষা সামগ্রী সংগ্রহ করতে চান?'}
         </p>
         {onOpenPreReg && (

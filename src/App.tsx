@@ -30,6 +30,7 @@ import { PackageCompareModal } from './components/PackageCompareModal';
 import { PackageCompareBar } from './components/PackageCompareBar';
 import { FloatingActions } from './components/FloatingActions';
 import { ReadingProgressBar } from './components/ReadingProgressBar';
+import { LanguageToast } from './components/LanguageToast';
 
 function AppContent() {
   const { lang, toggleLanguage } = useLanguage();
@@ -240,7 +241,7 @@ function AppContent() {
       <div className="print-only-header text-slate-900">
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-2xl font-extrabold tracking-tight">AL MAMUN HAZZ KAFELA, KHULNA</h1>
+            <h1 className="text-2xl font-extrabold tracking-tight">AL MAMUN HAJJ KAFELA, KHULNA</h1>
             <p className="text-xs font-semibold text-slate-600 mt-0.5">
               আল মামুন হজ্ব কাফেলা • শরিয়াহ নির্দেশনায়: আলহাজ্ব হযরত মাওলানা মুফতী আমানুল্লাহ
             </p>
@@ -251,7 +252,7 @@ function AppContent() {
           <div className="text-right text-xs text-slate-600">
             <div className="font-bold">Official Package Brochure</div>
             <div>Season 2026–2027</div>
-            <div className="text-[10px] text-slate-400 mt-1">almamunhazzkhulna@gmail.com</div>
+            <div className="text-[10px] text-slate-400 mt-1">almamunhajjkhulna@gmail.com</div>
           </div>
         </div>
       </div>
@@ -433,6 +434,8 @@ function AppContent() {
         onOpenWalkthrough={() => setIsWalkthroughOpen(true)}
         onOpenPrintModal={() => handleOpenPrintDialog()}
       />
+
+      <LanguageToast />
     </div>
   );
 }

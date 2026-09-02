@@ -180,7 +180,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* 2 Primary Buttons & Secondary Print/Guide Links */}
             <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <a
-                href="#packages"
+                href="#hajj-packages"
                 className="bg-[#0284C7] hover:bg-[#0369A1] active:scale-[0.99] text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-sky-900/50 hover:shadow-sky-500/30 transition flex items-center gap-2 text-xs sm:text-sm cursor-pointer"
               >
                 <span>{lang === 'en' ? 'View Hajj Packages' : 'হজ প্যাকেজসমূহ দেখুন'}</span>

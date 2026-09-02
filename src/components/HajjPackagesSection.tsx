@@ -655,7 +655,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
 
                     <a
                       href={`https://wa.me/8801712864077?text=${encodeURIComponent(
-                        `Assalamu Alaikum, I would like more information about "${lang === 'en' ? pkg.nameEn : pkg.nameBn}" (${lang === 'en' ? pkg.priceEn : pkg.priceBn}) at Al Mamun Hazz Kafela.`
+                        `Assalamu Alaikum, I would like more information about "${lang === 'en' ? pkg.nameEn : pkg.nameBn}" (${lang === 'en' ? pkg.priceEn : pkg.priceBn}) at Al Mamun Hajj Kafela.`
                       )}`}
                       target="_blank"
                       rel="noreferrer"
