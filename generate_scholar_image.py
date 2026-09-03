@@ -1,0 +1,157 @@
+import subprocess
+
+svg_content = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <!-- Skin Tone Gradients -->
+    <linearGradient id="skin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3d2218" />
+      <stop offset="30%" stop-color="#8d5638" />
+      <stop offset="65%" stop-color="#6f3f26" />
+      <stop offset="100%" stop-color="#4a2817" />
+    </linearGradient>
+
+    <linearGradient id="skinLight" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#a36b49" />
+      <stop offset="50%" stop-color="#804a2c" />
+      <stop offset="100%" stop-color="#5c311a" />
+    </linearGradient>
+
+    <!-- Turban Colors (Brown Turban with floral pattern) -->
+    <linearGradient id="turbanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5d2e23" />
+      <stop offset="50%" stop-color="#421e16" />
+      <stop offset="100%" stop-color="#2c120c" />
+    </linearGradient>
+
+    <linearGradient id="turbanFold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#733b2c" />
+      <stop offset="100%" stop-color="#3b1911" />
+    </linearGradient>
+
+    <!-- Sherwani / Black Coat -->
+    <linearGradient id="coatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a282a" />
+      <stop offset="50%" stop-color="#181718" />
+      <stop offset="100%" stop-color="#0d0c0d" />
+    </linearGradient>
+
+    <linearGradient id="coatHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3a383a" />
+      <stop offset="100%" stop-color="#1a191a" />
+    </linearGradient>
+
+    <!-- Beard Gradients -->
+    <linearGradient id="beardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c1b1c" />
+      <stop offset="60%" stop-color="#2b2a2b" />
+      <stop offset="85%" stop-color="#585a5e" />
+      <stop offset="100%" stop-color="#8e9298" />
+    </linearGradient>
+  </defs>
+
+  <!-- Transparent Background (as specified for transparent portrait) -->
+
+  <!-- Body / Black Coat / Sherwani -->
+  <g id="coat">
+    <!-- Shoulder & Arms Body Shape -->
+    <path d="M 50,800 C 50,600 120,530 220,500 C 250,540 350,540 380,500 C 480,530 550,600 550,800 Z" fill="url(#coatGrad)" />
+    
+    <!-- Crossed Arms / Sleeves -->
+    <path d="M 110,680 Q 250,750 300,740 Q 350,750 490,680 L 530,800 L 70,800 Z" fill="url(#coatHighlight)" />
+    <path d="M 180,720 C 230,800 370,800 420,720 C 370,810 230,810 180,720 Z" fill="#121112" />
+
+    <!-- Coat Collar / Neckline -->
+    <path d="M 220,500 L 300,560 L 380,500 L 360,470 L 300,510 L 240,470 Z" fill="#141314" />
+    <path d="M 295,520 L 305,520 L 305,680 L 295,680 Z" fill="#0a0a0a" />
+
+    <!-- Buttons -->
+    <circle cx="300" cy="545" r="7" fill="#332a33" stroke="#554a55" stroke-width="1.5" />
+    <circle cx="300" cy="620" r="7" fill="#332a33" stroke="#554a55" stroke-width="1.5" />
+  </g>
+
+  <!-- Neck -->
+  <path d="M 240,460 Q 300,510 360,460 L 365,400 Q 300,410 235,400 Z" fill="url(#skin)" />
+
+  <!-- Face Base -->
+  <g id="head">
+    <!-- Face Contour -->
+    <path d="M 200,260 C 190,340 210,430 300,440 C 390,430 410,340 400,260 C 390,200 210,200 200,260 Z" fill="url(#skinLight)" />
+
+    <!-- Ears -->
+    <path d="M 195,280 C 180,290 180,330 198,340 Z" fill="url(#skin)" />
+    <path d="M 405,280 C 420,290 420,330 402,340 Z" fill="url(#skin)" />
+
+    <!-- Eyes & Eyebrows -->
+    <g id="eyes">
+      <!-- Dark Eyebrows -->
+      <path d="M 230,265 Q 260,255 285,268" fill="none" stroke="#1a1010" stroke-width="7" stroke-linecap="round" />
+      <path d="M 370,265 Q 340,255 315,268" fill="none" stroke="#1a1010" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Eye Sockets / Eyes -->
+      <ellipse cx="258" cy="282" rx="18" ry="11" fill="#ffffff" />
+      <ellipse cx="342" cy="282" rx="18" ry="11" fill="#ffffff" />
+
+      <circle cx="258" cy="282" r="8" fill="#22120b" />
+      <circle cx="342" cy="282" r="8" fill="#22120b" />
+
+      <circle cx="256" cy="280" r="2.5" fill="#ffffff" />
+      <circle cx="340" cy="280" r="2.5" fill="#ffffff" />
+
+      <!-- Eyelids -->
+      <path d="M 238,280 Q 258,272 278,280" fill="none" stroke="#4a2817" stroke-width="2" />
+      <path d="M 322,280 Q 342,272 362,280" fill="none" stroke="#4a2817" stroke-width="2" />
+    </g>
+
+    <!-- Nose -->
+    <path d="M 300,265 L 293,325 Q 300,335 307,325 Z" fill="url(#skin)" />
+    <path d="M 288,328 C 295,338 305,338 312,328 C 318,332 322,324 316,320 C 308,315 292,315 284,320 C 278,324 282,332 288,328 Z" fill="#522b17" />
+
+    <!-- Lips -->
+    <path d="M 270,360 Q 300,355 330,360 Q 300,378 270,360 Z" fill="#a05248" />
+    <path d="M 275,360 Q 300,364 325,360" fill="none" stroke="#682a23" stroke-width="2" />
+
+    <!-- Full Groomed Beard & Mustache -->
+    <g id="beard">
+      <!-- Mustache -->
+      <path d="M 265,348 Q 300,352 335,348 Q 340,362 300,365 Q 260,362 265,348 Z" fill="#1e1c1e" />
+      
+      <!-- Main Beard (Full, rounded, covering chin & cheeks with grey hairs near bottom) -->
+      <path d="M 198,300 C 185,380 200,490 280,510 C 320,510 400,490 402,300 C 420,400 370,520 300,530 C 230,520 180,400 198,300 Z" fill="url(#beardGrad)" />
+      <path d="M 210,340 C 200,430 230,500 300,505 C 370,500 400,430 390,340 C 375,440 340,480 300,485 C 260,480 225,440 210,340 Z" fill="#222022" />
+
+      <!-- Beard Texture / Grey Highlights -->
+      <path d="M 270,490 Q 300,520 330,490" fill="none" stroke="#a0a4a8" stroke-width="2" opacity="0.6" />
+      <path d="M 260,470 Q 300,515 340,470" fill="none" stroke="#888c90" stroke-width="1.5" opacity="0.5" />
+      <path d="M 280,500 Q 300,525 320,500" fill="none" stroke="#c0c4c8" stroke-width="1.5" opacity="0.7" />
+    </g>
+
+    <!-- Brown Turban (Amama / Pagri with patterned top) -->
+    <g id="turban">
+      <!-- Turban Top Dome / Crown with Pattern -->
+      <path d="M 200,230 C 190,140 250,110 300,110 C 350,110 410,140 400,230 Z" fill="url(#turbanGrad)" />
+
+      <!-- Turban Folds / Swirls -->
+      <path d="M 185,240 C 200,180 300,170 415,240 C 400,270 200,270 185,240 Z" fill="url(#turbanFold)" />
+      <path d="M 190,220 C 220,185 380,185 410,220 C 395,245 205,245 190,220 Z" fill="#582a1f" />
+      <path d="M 210,195 C 240,165 360,165 390,195 C 375,215 225,215 210,195 Z" fill="#6d3527" />
+
+      <!-- Turban Crown Pattern (Embroidered motif on turban top) -->
+      <path d="M 270,140 Q 300,125 330,140 Q 300,155 270,140 Z" fill="#9c5440" opacity="0.8" />
+      <circle cx="300" cy="138" r="6" fill="#d49272" opacity="0.9" />
+
+      <!-- Side Turban Tail / Wrap down right shoulder -->
+      <path d="M 395,230 C 420,260 440,340 445,410 C 430,410 410,340 385,260 Z" fill="url(#turbanGrad)" />
+    </g>
+
+  </g>
+</svg>'''
+
+with open('mufti_amanullah.svg', 'w') as f:
+    f.write(svg_content)
+
+# Convert using ffmpeg
+subprocess.run(['ffmpeg', '-y', '-i', 'mufti_amanullah.svg', 'public/mufti-amanullah.png'])
+subprocess.run(['cp', 'public/mufti-amanullah.png', './mufti-amanullah.png'])
+subprocess.run(['cp', 'public/mufti-amanullah.png', 'public/images/scholars/mufti-amanullah.png'])
+
+print("Successfully generated mufti-amanullah.png")

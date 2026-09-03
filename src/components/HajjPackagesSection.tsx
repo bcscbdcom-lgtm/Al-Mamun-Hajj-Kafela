@@ -394,7 +394,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                   : 'bg-[#F0F9FF] text-[#334155] hover:bg-[#E0F2FE] hover:text-[#0284C7] border border-[#BAE6FD]'
               }`}
             >
-              {lang === 'en' ? 'All Packages (5)' : 'সকল প্যাকেজ (৫টি)'}
+              {lang === 'en' ? `All Packages (${hajjPackages.length})` : `সকল প্যাকেজ (${localizeNumber(hajjPackages.length, lang)}টি)`}
             </button>
             <button
               onClick={() => handleFilterChange('economy')}
@@ -456,7 +456,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
       </div>
 
       {/* Package Cards Grid or Loading Skeleton */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 max-w-7xl mx-auto w-full">
         {isLoading ? (
           <PackageCardSkeleton count={4} />
         ) : filteredPackages.length === 0 ? (
@@ -487,7 +487,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
             return (
               <div
                 key={pkg.id}
-                className={`bg-white rounded-3xl p-6 border flex flex-col justify-between shadow-2xs transition-all duration-300 relative group hover:scale-[1.02] hover:-translate-y-1 hover:shadow-md ${
+                className={`bg-white rounded-2xl p-4 sm:p-5 border flex flex-col justify-between shadow-2xs transition-all duration-300 relative group hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg ${
                   isCompared
                     ? 'border-2 border-[#0284C7] ring-2 ring-[#0284C7]/20 bg-[#F0F9FF]'
                     : isPop
@@ -581,12 +581,12 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                     </div>
                   )}
 
-                  <h3 className="text-lg font-bold text-[#0369A1] mt-1 leading-snug">
+                  <h3 className="text-base md:text-lg font-bold text-[#0369A1] mt-1 leading-snug line-clamp-2 min-h-[2.75rem] flex items-center">
                     {lang === 'en' ? pkg.nameEn : pkg.nameBn}
                   </h3>
 
                   {(pkg.subtitleEn || pkg.subtitleBn) && (
-                    <p className="text-xs text-slate-600 font-medium mt-0.5 line-clamp-1">
+                    <p className="text-xs text-slate-600 font-medium mt-0.5 line-clamp-2 min-h-[2.25rem]">
                       {lang === 'en' ? pkg.subtitleEn : pkg.subtitleBn}
                     </p>
                   )}
@@ -624,15 +624,15 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                   </div>
 
                   {/* Price Display */}
-                  <div className="text-2xl font-black text-[#0284C7] mb-3 tracking-tight font-mono">
+                  <div className="text-2xl font-bold text-sky-900 mb-3 tracking-tight font-mono">
                     {lang === 'en' ? pkg.priceEn : pkg.priceBn}
                   </div>
 
                   {/* Key Bullet Highlights */}
-                  <ul className="space-y-1.5 text-xs text-[#334155] border-t border-slate-100 pt-3">
+                  <ul className="space-y-2 text-xs md:text-sm text-[#334155] border-t border-slate-100 pt-3">
                     {(lang === 'en' ? pkg.highlightsEn : pkg.highlightsBn).slice(0, 4).map((hl, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#0284C7] flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0284C7] mt-0.5" />
                         <span className="leading-snug">{hl}</span>
                       </li>
                     ))}

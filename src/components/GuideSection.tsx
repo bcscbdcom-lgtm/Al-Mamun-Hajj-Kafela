@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GraduationCap, Languages, Users, CheckCircle2, ChevronRight, Sparkles } from 'lucide-react';
-import { Language, GuideMember } from '../types';
+import { Language } from '../types';
 import { guidesData } from '../data/guides';
 
 interface GuideSectionProps {
@@ -9,7 +9,7 @@ interface GuideSectionProps {
 }
 
 export const GuideSection: React.FC<GuideSectionProps> = ({ lang, onOpenPreReg }) => {
-  const [selectedGuide, setSelectedGuide] = useState<GuideMember>(guidesData[0]);
+  const leadScholar = guidesData[0];
 
   return (
     <section id="guides" className="py-20 bg-gradient-to-br from-sky-800 via-sky-900 to-slate-900 text-white relative overflow-hidden">
@@ -37,30 +37,24 @@ export const GuideSection: React.FC<GuideSectionProps> = ({ lang, onOpenPreReg }
           
           {/* Left Guide Image & Card */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl border border-sky-400/30 p-2.5 bg-sky-950/50 backdrop-blur-sm shadow-2xl overflow-hidden">
-              <div className="rounded-2xl overflow-hidden bg-slate-900 text-center relative group">
-                <img
-                  src={selectedGuide.image}
-                  alt={selectedGuide.nameEn}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-80 sm:h-96 object-cover object-top hover:scale-105 transition duration-500"
+            <div className="w-full max-w-sm lg:max-w-[380px] mx-auto flex flex-col rounded-3xl overflow-hidden shadow-2xl border-2 border-sky-300/60 bg-white">
+              <div className="relative w-full h-[480px] md:h-[490px] bg-gradient-to-b from-sky-600 via-sky-700 to-sky-800 overflow-hidden flex items-end justify-center">
+                <img 
+                  src="./mufti-amanullah.png" 
+                  alt={lang === 'en' ? leadScholar.nameEn : 'আলহাজ্ব হযরত মাওলানা মুফতী আমানুল্লাহ'} 
+                  className="w-full h-full object-contain md:object-cover object-bottom transition-none"
                 />
-                <div className="p-5 bg-gradient-to-t from-slate-950 via-slate-900/95 to-transparent border-t border-sky-400/30 text-left">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-lg font-bold text-white">
-                      {lang === 'en' ? selectedGuide.nameEn : selectedGuide.nameBn}
-                    </h3>
-                    <span className="bg-sky-900/80 text-sky-200 border border-sky-400/30 text-[10px] font-bold px-2 py-0.5 rounded-md">
-                      Verified
-                    </span>
-                  </div>
-                  <p className="text-xs text-sky-300 font-semibold mt-1">
-                    {lang === 'en' ? selectedGuide.roleEn : selectedGuide.roleBn}
-                  </p>
-                  <p className="text-[11px] text-sky-100/90 mt-1">
-                    {lang === 'en' ? selectedGuide.experienceEn : selectedGuide.experienceBn}
-                  </p>
-                </div>
+              </div>
+              <div className="bg-white py-3.5 px-4 text-center border-t border-sky-100 shrink-0">
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 tracking-tight flex items-center justify-center gap-1.5">
+                  {lang === 'en' ? leadScholar.nameEn : 'আলহাজ্ব হযরত মাওলানা মুফতী আমানুল্লাহ'}
+                  <span className="inline-block w-4 h-4 text-amber-500">✓</span>
+                </h3>
+                <p className="text-xs md:text-sm text-sky-800 font-medium mt-0.5">
+                  {lang === 'en' 
+                    ? 'Vice Principal | Shariah Consultant & Director, Al Mamun Hajj Kafela'
+                    : 'ভাইস প্রিন্সিপাল | শরীয়াহ কনসালট্যান্ট ও পরিচালক, আল মামুন হজ্ব কাফেলা'}
+                </p>
               </div>
             </div>
           </div>
@@ -73,10 +67,12 @@ export const GuideSection: React.FC<GuideSectionProps> = ({ lang, onOpenPreReg }
                 <span>{lang === 'en' ? 'SCHOLAR SPOTLIGHT' : 'নির্বাচিত আলেম মেন্টর'}</span>
               </div>
               <h3 className="text-2xl font-bold text-white">
-                {lang === 'en' ? selectedGuide.nameEn : selectedGuide.nameBn}
+                {lang === 'en' ? leadScholar.nameEn : leadScholar.nameBn}
               </h3>
               <p className="text-sky-100/90 text-sm leading-relaxed mt-3">
-                {lang === 'en' ? selectedGuide.bioEn : selectedGuide.bioBn}
+                {lang === 'en'
+                  ? 'Vice Principal, Al Jamiatul Arabia Khadizatul Kubra Madrasah (Shahid Abul Road, Sheikhpara, Khulna) and Shariah Consultant & Director, Al Mamun Hajj Kafela. Prominent Islamic scholar with deep knowledge of Fiqh al-Hajj and authentic Sunnah pilgrimage rites.'
+                  : 'ভাইস প্রিন্সিপাল, আল জামিয়াতুল আরাবিয়া খাদিজাতুল কুবরা মাদ্রাসা (শহিদ আবুল সড়ক, শেখপাড়া, খুলনা) এবং শরীয়াহ কনসালট্যান্ট ও পরিচালক, আল মামুন হজ্ব কাফেলা। পবিত্র কুরআন ও সুন্নাহর আলোকে হাজীদের সরাসরি প্রশিক্ষণ ও দিকনির্দেশনা প্রদান করেন।'}
               </p>
             </div>
 
@@ -86,7 +82,7 @@ export const GuideSection: React.FC<GuideSectionProps> = ({ lang, onOpenPreReg }
                 {lang === 'en' ? 'Core Areas of Guidance' : 'যে সকল বিষয়ে সেবা প্রদান করেন'}
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {(lang === 'en' ? selectedGuide.specialtiesEn : selectedGuide.specialtiesBn).map((spec, i) => (
+                {(lang === 'en' ? leadScholar.specialtiesEn : leadScholar.specialtiesBn).map((spec, i) => (
                   <div
                     key={i}
                     className="flex items-center gap-2 bg-sky-950/60 border border-sky-400/30 p-2.5 rounded-xl text-xs text-white"
@@ -98,30 +94,8 @@ export const GuideSection: React.FC<GuideSectionProps> = ({ lang, onOpenPreReg }
               </div>
             </div>
 
-            {/* Guide Selectors Tabs */}
-            <div className="pt-4 border-t border-sky-700/50">
-              <div className="text-xs font-bold text-sky-200 mb-3">
-                {lang === 'en' ? 'View all Mentors & Scholars:' : 'সকল আলেম মেন্টরদের প্রোফাইল দেখুন:'}
-              </div>
-              <div className="flex flex-wrap gap-2.5">
-                {guidesData.map((g) => (
-                  <button
-                    key={g.id}
-                    onClick={() => setSelectedGuide(g)}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer ${
-                      selectedGuide.id === g.id
-                        ? 'bg-sky-500 text-white font-black shadow-md border border-sky-300/50'
-                        : 'bg-sky-950/50 text-sky-200 hover:bg-sky-900/80 border border-sky-700/50'
-                    }`}
-                  >
-                    <GraduationCap className="w-3.5 h-3.5" />
-                    <span>{lang === 'en' ? g.nameEn.split(' ')[0] + ' ' + (g.nameEn.split(' ')[1] || '') : g.nameBn}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-2">
+            {/* Primary Action Button */}
+            <div className="mt-6">
               <button
                 onClick={onOpenPreReg}
                 className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-6 py-3 rounded-xl transition shadow-lg flex items-center gap-2 cursor-pointer border border-emerald-400/40"

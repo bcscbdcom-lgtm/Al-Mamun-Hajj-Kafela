@@ -314,7 +314,8 @@ export const AskScholarModal: React.FC<AskScholarModalProps> = ({
                           <img
                             src={scholar.image}
                             alt={scholar.nameEn}
-                            className="w-10 h-10 rounded-xl object-cover border border-[#E5E7EB]"
+                            referrerPolicy="no-referrer"
+                            className="w-10 h-10 rounded-xl object-cover object-top border border-[#E5E7EB]"
                           />
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-extrabold text-slate-900 truncate">

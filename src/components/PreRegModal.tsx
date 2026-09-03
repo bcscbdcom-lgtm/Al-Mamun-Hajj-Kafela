@@ -141,11 +141,10 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
                     <option value={`Hajj ${getDynamicSeasonRange(false)} (Pre-Register)`}>
                       Hajj {getDynamicSeasonRange(false)} (Pre-Register)
                     </option>
-                    <option value="সাশ্রয়ী ফুল প্যাকেজ (৳ ৫,১৩,৬৪৮)">সাশ্রয়ী ফুল প্যাকেজ (৳ ৫,১৩,৬৪৮)</option>
-                    <option value="ইকোনমি প্যাকেজ (৳ ৫,৪০,০০০)">ইকোনমি প্যাকেজ (৳ ৫,৪০,০০০)</option>
-                    <option value="স্ট্যান্ডার্ড প্যাকেজ (৳ ৬,৪০,০০০)">স্ট্যান্ডার্ড প্যাকেজ (৳ ৬,৪০,০০০)</option>
-                    <option value="ভি. আই. পি প্যাকেজ (৳ ৯,৯৫,০০০)">ভি. আই. পি প্যাকেজ (৳ ৯,৯৫,০০০)</option>
-                    <option value="ভি. ভি. আই. পি রয়েল প্যাকেজ (৳ ১৯,৫০,০০০)">ভি. ভি. আই. পি প্যাকেজ (৳ ১৯,৫০,০০০)</option>
+                    <option value="ইকোনমি সাশ্রয়ী প্যাকেজ (৳ ৫,৫০,০০০)">ইকোনমি সাশ্রয়ী প্যাকেজ (৳ ৫,৫০,০০০)</option>
+                    <option value="স্ট্যান্ডার্ড সাশ্রয়ী প্যাকেজ (৳ ৫,৮০,০০০)">স্ট্যান্ডার্ড সাশ্রয়ী প্যাকেজ (৳ ৫,৮০,০০০)</option>
+                    <option value="নন শিফটিং স্থায়ী প্যাকেজ (৳ ৬,৯৫,০০০)">নন শিফটিং স্থায়ী প্যাকেজ (৳ ৬,৯৫,০০০)</option>
+                    <option value="ফাইভ স্টার ভিআইপি প্যাকেজ (৳ ১৫,০০,০০০)">ফাইভ স্টার ভিআইপি প্যাকেজ (৳ ১৫,০০,০০০)</option>
                     <option value="August/September Umrah (৳ ১৬০,০০০)">August/September Umrah (৳ ১৬০,০০০)</option>
                     <option value="Umrah Express (৳ ১৬৫,০০০)">Umrah Express (৳ ১৬৫,০০০)</option>
                     <option value="Umrah Comfort Family (৳ ২১৫,০০০)">Umrah Comfort Family (৳ ২১৫,০০০)</option>
