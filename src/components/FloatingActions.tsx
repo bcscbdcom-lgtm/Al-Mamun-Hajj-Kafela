@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, Phone, ArrowUp } from 'lucide-react';
 import { Language } from '../types';
+import { getGeneralWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface FloatingActionsProps {
   lang: Language;
@@ -50,9 +52,18 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ lang }) => {
 
       {/* WhatsApp Inquiry Action Button with Notification Pulse */}
       <a
-        href="https://wa.me/8801712864077?text=আসসালামু%20আলাইকুম,%20আল%20মামুন%20হজ্ব%20কাফেলা%20সম্পর্কে%20জানতে%20চাই"
+        href={getGeneralWhatsAppLink(lang)}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => {
+          trackWhatsAppClick({
+            id: 'general_floating',
+            nameEn: 'Floating WhatsApp Action',
+            nameBn: 'ফ্লোটিং বাটন হোয়াটসঅ্যাপ',
+            type: 'general',
+            source: 'floating_action',
+          });
+        }}
         className="relative group bg-[#0284C7] hover:bg-[#0369A1] text-white rounded-full sm:rounded-2xl p-3 sm:py-3 sm:px-4 flex items-center gap-2.5 shadow-xl hover:scale-[1.03] transition duration-300 border border-[#BAE6FD]"
         title={lang === 'en' ? 'WhatsApp Inquiry: 01712-864077' : 'হোয়াটসঅ্যাপ ইনকোয়ারি: ০১৭১২-৮৬৪০৭৭'}
         aria-label="WhatsApp Inquiry"

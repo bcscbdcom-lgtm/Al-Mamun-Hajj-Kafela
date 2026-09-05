@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Menu, X, PhoneCall } from 'lucide-react';
+import { Globe, Menu, X, PhoneCall, MessageCircle } from 'lucide-react';
 import { Language } from '../types';
 import { BrandLogo } from './BrandLogo';
+import { getGeneralWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface NavbarProps {
   lang: Language;
@@ -110,6 +112,27 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
               <span>{lang === 'en' ? 'বাংলা' : 'English'}</span>
             </button>
 
+            {/* Direct WhatsApp Quick Link */}
+            <a
+              href={getGeneralWhatsAppLink(lang)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackWhatsAppClick({
+                  id: 'navbar_general_inquiry',
+                  nameEn: 'Navbar Direct Inquiry',
+                  nameBn: 'ন্যাভবার সরাসরি অনুসন্ধান',
+                  type: 'general',
+                  source: 'navbar_desktop',
+                });
+              }}
+              className="hidden sm:inline-flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold px-3 py-2 rounded-xl transition cursor-pointer"
+              title={lang === 'en' ? 'WhatsApp 01712-864077' : 'হোয়াটসঅ্যাপে যোগাযোগ (০১৭১২-৮৬৪০৭৭)'}
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="hidden md:inline">{lang === 'en' ? 'WhatsApp' : 'হোয়াটসঅ্যাপ'}</span>
+            </a>
+
             {/* Book Consultation CTA Button */}
             <button
               onClick={() => onOpenPreReg()}
@@ -151,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
               </a>
             );
           })}
-          <div className="pt-3 border-t border-slate-200">
+          <div className="pt-3 border-t border-slate-200 space-y-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -162,6 +185,25 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
               <PhoneCall className="w-4 h-4 text-sky-200" />
               <span>{lang === 'en' ? 'Book Consultation / Pre-Register' : 'পরামর্শের আবেদন / প্রাক-নিবন্ধন'}</span>
             </button>
+            <a
+              href={getGeneralWhatsAppLink(lang)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackWhatsAppClick({
+                  id: 'navbar_mobile_inquiry',
+                  nameEn: 'Mobile Menu Direct Inquiry',
+                  nameBn: 'মোবাইল মেনু সরাসরি অনুসন্ধান',
+                  type: 'general',
+                  source: 'navbar_mobile',
+                });
+                setMobileMenuOpen(false);
+              }}
+              className="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-3 rounded-xl shadow-xs text-center flex items-center justify-center gap-2 cursor-pointer transition"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>{lang === 'en' ? 'WhatsApp (01712-864077)' : 'হোয়াটসঅ্যাপে যোগাযোগ (০১৭১২-৮৬৪০৭৭)'}</span>
+            </a>
           </div>
         </div>
       )}

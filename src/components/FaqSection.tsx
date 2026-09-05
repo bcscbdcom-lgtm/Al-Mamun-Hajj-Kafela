@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import { Language, FAQItem } from '../types';
 import { faqsData } from '../data/faqs';
+import { getScholarWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface FaqSectionProps {
   lang: Language;
@@ -268,12 +270,21 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang, onOpenPreReg }) =>
           </div>
 
           <a
-            href="https://wa.me/8801712864077?text=আসসালামু%20আলাইকুম,%20হজ/ওমরাহ%20মাসআলা%20সংক্রান্ত%20একটি%20প্রশ্ন%20ছিল।"
+            href={getScholarWhatsAppLink(lang)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              trackWhatsAppClick({
+                id: 'faq_scholar_inquiry',
+                nameEn: 'FAQ Scholar Guidance Inquiry',
+                nameBn: 'প্রশ্নোত্তর আলেম পরামর্শ অনুসন্ধান',
+                type: 'scholar',
+                source: 'faq_bottom_banner',
+              });
+            }}
             className="bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-xs transition flex items-center gap-2 whitespace-nowrap cursor-pointer flex-shrink-0"
           >
-            <PhoneCall className="w-4 h-4" />
+            <MessageCircle className="w-4 h-4" />
             <span>01712-864077</span>
           </a>
         </div>

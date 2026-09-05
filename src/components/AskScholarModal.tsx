@@ -20,6 +20,8 @@ import {
 import { Language } from '../types';
 import { agencyLeadershipData } from '../data/leadership';
 import { toBengaliNumber } from '../utils/dateFormatter';
+import { submitLeadToWeb3Forms } from '../utils/leadSubmission';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface AskScholarModalProps {
   isOpen: boolean;
@@ -127,7 +129,7 @@ export const AskScholarModal: React.FC<AskScholarModalProps> = ({
     }
   }, [isOpen, lang, initialTemplateIndex]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!questionText.trim() || !pilgrimName.trim() || !pilgrimPhone.trim()) return;
 
@@ -135,10 +137,21 @@ export const AskScholarModal: React.FC<AskScholarModalProps> = ({
     const randomRef = `SCH-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
     setReferenceId(randomRef);
 
-    setTimeout(() => {
+    try {
+      await submitLeadToWeb3Forms({
+        name: pilgrimName,
+        phone: pilgrimPhone,
+        packageOrSubject: `Scholar Inquiry (${selectedScholar.nameBn}) [Ref: ${randomRef}]`,
+        messageOrNotes: `[Slot: ${preferredTime}, Mode: ${consultationMode}, Email: ${pilgrimEmail || 'N/A'}] ${questionText}`,
+        consultationMode,
+        formSource: 'AskScholarModal',
+      });
+    } catch (err) {
+      console.warn('Error submitting scholar inquiry:', err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 600);
+    }
   };
 
   const selectedScholar = scholars.find((s) => s.id === selectedScholarId) || scholars[0];
@@ -221,8 +234,19 @@ export const AskScholarModal: React.FC<AskScholarModalProps> = ({
                 <div className="pt-3 flex flex-col sm:flex-row gap-3 justify-center">
                   <a
                     href={`https://wa.me/8801712864077?text=${encodeURIComponent(
-                      `Assalamu Alaikum. I submitted an inquiry (Ref: ${referenceId}) for ${selectedScholar.nameEn}: "${questionText.substring(0, 100)}..."`
+                      lang === 'en'
+                        ? `Assalamu Alaikum. I submitted an inquiry (Ref: ${referenceId}) for ${selectedScholar.nameEn}: "${questionText.substring(0, 100)}..."`
+                        : `আসসালামু আলাইকুম, আমি আল মামুন হজ কাফেলার বিজ্ঞ আলেম ${selectedScholar.nameBn} সাহেবের নিকট ধর্মীয় পরামর্শ/মাসআলা বিষয়ে জানতে আগ্রহী (রেফারেন্স: ${referenceId})।`
                     )}`}
+                    onClick={() => {
+                      trackWhatsAppClick({
+                        id: `scholar_${selectedScholar.id}`,
+                        nameEn: `Scholar Consultation: ${selectedScholar.nameEn}`,
+                        nameBn: `বিজ্ঞ আলেম পরামর্শ: ${selectedScholar.nameBn}`,
+                        type: 'scholar',
+                        source: 'ask_scholar_modal_direct',
+                      });
+                    }}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold transition shadow-xs cursor-pointer"

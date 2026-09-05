@@ -31,6 +31,8 @@ import {
 import { QRCodeSVG } from 'qrcode.react';
 import { Language, PackageItem } from '../types';
 import { toBengaliNumber } from '../utils/dateFormatter';
+import { getHajjPackageWhatsAppLink, getUmrahPackageWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 import {
   Currency,
   convertFromBDT,
@@ -368,9 +370,22 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
                 ? (pkg.foodEn || '3 daily authentic Bengali meals & Mina catering included')
                 : (pkg.foodBn || 'প্রতিদিন ৩ বেলা সুস্বাদু দেশীয় খাবার ও মিনায় ক্যাটারিং')}
             </p>
-            <p className="text-[11px] text-emerald-800 mt-1.5 font-semibold flex items-center gap-1">
-              <span>✓ {lang === 'en' ? 'Bengali Cook / Catering' : 'দেশি বাবুর্চি ও ফ্রেশ খাবার'}</span>
-            </p>
+            {pkg.id === 'hajj-vip-fivestar' ? (
+              <div className="mt-2 p-2.5 rounded-xl bg-amber-50/90 border border-amber-300 text-[11px] font-semibold space-y-1">
+                <div className="text-emerald-700 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>{lang === 'en' ? 'Included: Daily Wholesome Buffet Breakfast' : 'অন্তর্ভুক্ত: প্রতিদিন স্বাস্থ্যসম্মত বুফে ব্রেকফাস্ট'}</span>
+                </div>
+                <div className="text-rose-700 flex items-center gap-1.5">
+                  <XCircle className="w-3.5 h-3.5 flex-shrink-0 text-rose-500" />
+                  <span>{lang === 'en' ? 'Excluded: Lunch & Dinner strictly at pilgrim’s own expense' : 'বহির্ভূত: দুপুর ও রাতের খাবার যাত্রীদের সম্পূর্ণ নিজ দায়িত্বে'}</span>
+                </div>
+              </div>
+            ) : (
+              <p className="text-[11px] text-emerald-800 mt-1.5 font-semibold flex items-center gap-1">
+                <span>✓ {lang === 'en' ? 'Bengali Cook / Catering' : 'দেশি বাবুর্চি ও ফ্রেশ খাবার'}</span>
+              </p>
+            )}
           </div>
         </div>
 
@@ -391,14 +406,19 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
 
         {/* Exclusions */}
         <div className="mb-6">
-          <h4 className="font-bold text-slate-500 text-xs sm:text-sm uppercase tracking-wider mb-3">
-            {lang === 'en' ? '✕ Exclusions & Optional Costs' : '✕ প্যাকেজে যা অন্তর্ভুক্ত নয়'}
-          </h4>
-          <ul className="space-y-1.5 text-xs text-slate-500 bg-[#F8FAFC] p-4 rounded-2xl border border-[#E5E7EB]">
+          <div className="flex items-center gap-2 mb-3">
+            <h4 className="font-bold text-rose-700 text-xs sm:text-sm uppercase tracking-wider">
+              {lang === 'en' ? '✕ Exclusions & Pilgrim Responsibilities' : '✕ প্যাকেজে যা অন্তর্ভুক্ত নয় (শর্তাবলী)'}
+            </h4>
+            <span className="text-[10px] bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded-full font-bold">
+              {lang === 'en' ? 'Strict Terms' : 'জরুরি জ্ঞাতব্য'}
+            </span>
+          </div>
+          <ul className="space-y-2 text-xs text-rose-900 bg-rose-50/50 p-4 rounded-2xl border border-rose-200">
             {(lang === 'en' ? pkg.exclusionsEn : pkg.exclusionsBn).map((exc, i) => (
               <li key={i} className="flex items-start gap-2">
-                <XCircle className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{exc}</span>
+                <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
+                <span className="leading-relaxed font-medium">{exc}</span>
               </li>
             ))}
           </ul>
@@ -427,11 +447,33 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
           </button>
 
           <a
-            href={`https://wa.me/8801712864077?text=${encodeURIComponent(
-              `Assalamu Alaikum, I would like more details and itinerary for "${lang === 'en' ? pkg.nameEn : pkg.nameBn}" (${lang === 'en' ? pkg.priceEn : pkg.priceBn}).`
-            )}`}
+            href={
+              pkg.type === 'umrah'
+                ? getUmrahPackageWhatsAppLink(
+                    { title: lang === 'en' ? pkg.nameEn : pkg.nameBn },
+                    lang
+                  )
+                : getHajjPackageWhatsAppLink(
+                    {
+                      title: lang === 'en' ? pkg.nameEn : pkg.nameBn,
+                      price: lang === 'en' ? pkg.priceEn : pkg.priceBn,
+                    },
+                    lang
+                  )
+            }
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            onClick={() => {
+              trackWhatsAppClick({
+                id: pkg.id,
+                nameEn: pkg.nameEn,
+                nameBn: pkg.nameBn,
+                type: pkg.type,
+                source: 'detail_modal',
+                priceEn: pkg.priceEn,
+                priceBn: pkg.priceBn,
+              });
+            }}
             className="w-full sm:w-auto bg-[#F8FAFC] hover:bg-slate-100 text-slate-700 text-xs font-bold px-4 py-3.5 rounded-xl transition flex items-center justify-center gap-1.5 border border-[#E5E7EB]"
           >
             <MessageCircle className="w-4 h-4 text-emerald-700" />

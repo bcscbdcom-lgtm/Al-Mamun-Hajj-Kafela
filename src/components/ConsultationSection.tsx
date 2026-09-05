@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 import { getDynamicSeasonRange } from '../utils/dateUtils';
+import { submitLeadToWeb3Forms } from '../utils/leadSubmission';
+import { getGeneralWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface ConsultationSectionProps {
   lang: Language;
@@ -13,6 +16,7 @@ export const ConsultationSection: React.FC<ConsultationSectionProps> = ({ lang }
   const [phone, setPhone] = useState('');
   const [interest, setInterest] = useState(`Hajj ${getDynamicSeasonRange(false)} (Pre-Register)`);
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isHighlighting, setIsHighlighting] = useState(false);
 
   const triggerFieldHighlight = () => {
@@ -22,10 +26,25 @@ export const ConsultationSection: React.FC<ConsultationSectionProps> = ({ lang }
     }, 1000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     triggerFieldHighlight();
-    setFormSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      await submitLeadToWeb3Forms({
+        name: fullName,
+        phone,
+        packageOrSubject: interest,
+        messageOrNotes: message,
+        formSource: 'ConsultationSection',
+      });
+    } catch (err) {
+      console.warn('Error submitting consultation form:', err);
+    } finally {
+      setIsSubmitting(false);
+      setFormSubmitted(true);
+    }
   };
 
   const handleReset = () => {
@@ -130,11 +149,20 @@ export const ConsultationSection: React.FC<ConsultationSectionProps> = ({ lang }
                   </svg>
                 </a>
                 <a
-                  href="https://wa.me/8801712864077?text=আসসালামু%20আলাইকুম,%20আল%20মামুন%20হজ্ব%20কাফেলা%20সম্পর্কে%20জানতে%20চাই"
+                  href={getGeneralWhatsAppLink(lang)}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
                   title={lang === 'en' ? 'WhatsApp Inquiry' : 'আমাদের হোয়াটসঅ্যাপে মেসেজ দিন'}
+                  onClick={() => {
+                    trackWhatsAppClick({
+                      id: 'consultation_section_inquiry',
+                      nameEn: 'Consultation Section WhatsApp',
+                      nameBn: 'পরামর্শ সেকশন হোয়াটসঅ্যাপ',
+                      type: 'general',
+                      source: 'consultation_section',
+                    });
+                  }}
                   className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#25D366] text-white flex items-center justify-center transition-all duration-300 border border-white/20 hover:scale-110"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -263,12 +291,22 @@ export const ConsultationSection: React.FC<ConsultationSectionProps> = ({ lang }
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 onClick={triggerFieldHighlight}
                 id="sendMessageBtn"
-                className="w-full bg-[#0284C7] hover:bg-[#0369A1] active:scale-[0.99] text-white text-xs font-bold py-3.5 rounded-xl shadow-xs transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full bg-[#0284C7] hover:bg-[#0369A1] active:scale-[0.99] disabled:opacity-70 text-white text-xs font-bold py-3.5 rounded-xl shadow-xs transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Send className="w-4 h-4" />
-                <span>{lang === 'en' ? 'Send Message & Callback Request' : 'বার্তা পাঠান ও কলব্যাক অনুরোধ করুন'}</span>
+                {isSubmitting ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>{lang === 'en' ? 'Sending Request...' : 'বার্তা পাঠানো হচ্ছে...'}</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>{lang === 'en' ? 'Send Message & Callback Request' : 'বার্তা পাঠান ও কলব্যাক অনুরোধ করুন'}</span>
+                  </>
+                )}
               </button>
 
               <div className="flex items-center justify-center gap-2 text-[10px] text-slate-500 pt-1">

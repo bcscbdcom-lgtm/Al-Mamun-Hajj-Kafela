@@ -3,6 +3,8 @@ import { X, Check, CheckCircle2, Minus, Star, ArrowRight, MessageCircle, Layers,
 import { Language, PackageItem } from '../types';
 import { localizeDuration } from '../utils/dateFormatter';
 import { Currency, formatCurrencyPrice, getCurrencyConfig, extractNumericPrice } from '../utils/currency';
+import { getHajjPackageWhatsAppLink, getUmrahPackageWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface PackageCompareModalProps {
   isOpen: boolean;
@@ -250,13 +252,26 @@ export const PackageCompareModal: React.FC<PackageCompareModalProps> = ({
                     {lang === 'en' ? 'Food & Catering' : 'খাবার ও ক্যাটারিং'}
                   </td>
                   {packages.map((pkg) => {
+                    const isVipSpecial = pkg.id === 'hajj-vip-fivestar';
                     const foodText = lang === 'en' ? (pkg.foodEn || '3x Daily Bengali Meals') : (pkg.foodBn || '৩ বেলা দেশীয় খাবার');
                     return (
                       <td key={pkg.id} className="p-3.5 text-slate-700">
-                        <div className="flex items-start gap-1.5 text-emerald-700 font-semibold text-xs">
-                          <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                          <span>{foodText}</span>
-                        </div>
+                        {isVipSpecial ? (
+                          <div className="space-y-1 text-xs">
+                            <div className="flex items-start gap-1.5 text-emerald-700 font-semibold">
+                              <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                              <span>{lang === 'en' ? 'Buffet Breakfast Included' : 'বুফে ব্রেকফাস্ট অন্তর্ভুক্ত'}</span>
+                            </div>
+                            <div className="text-[11px] text-rose-700 font-medium bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                              {lang === 'en' ? 'Lunch & Dinner: Own Expense' : 'দুপুর ও রাতের খাবার: নিজ দায়িত্বে'}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex items-start gap-1.5 text-emerald-700 font-semibold text-xs">
+                            <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                            <span>{foodText}</span>
+                          </div>
+                        )}
                       </td>
                     );
                   })}
@@ -298,6 +313,15 @@ export const PackageCompareModal: React.FC<PackageCompareModalProps> = ({
                       return (
                         <td key={pkg.id} className="p-3.5 text-slate-400">
                           {lang === 'en' ? 'N/A (Umrah)' : 'প্রযোজ্য নয় (ওমরাহ)'}
+                        </td>
+                      );
+                    }
+                    if (pkg.id === 'hajj-vip-fivestar') {
+                      return (
+                        <td key={pkg.id} className="p-3.5">
+                          <span className="inline-flex items-center gap-1 text-rose-700 font-semibold text-xs bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                            <span>✕ {lang === 'en' ? 'NOT Included (Own Expense)' : 'প্যাকেজে অন্তর্ভুক্ত নয় (নিজ খরচে)'}</span>
+                          </span>
                         </td>
                       );
                     }
@@ -363,11 +387,24 @@ export const PackageCompareModal: React.FC<PackageCompareModalProps> = ({
                           </button>
 
                           <a
-                            href={`https://wa.me/8801712864077?text=${encodeURIComponent(
-                              `Assalamu Alaikum, I compared and am interested in "${name}" (${price}) at Al Mamun Hajj Kafela.`
-                            )}`}
+                            href={
+                              pkg.type === 'umrah'
+                                ? getUmrahPackageWhatsAppLink({ title: name }, lang)
+                                : getHajjPackageWhatsAppLink({ title: name, price }, lang)
+                            }
                             target="_blank"
-                            rel="noreferrer"
+                            rel="noopener noreferrer"
+                            onClick={() => {
+                              trackWhatsAppClick({
+                                id: pkg.id,
+                                nameEn: pkg.nameEn,
+                                nameBn: pkg.nameBn,
+                                type: pkg.type,
+                                source: 'compare_modal',
+                                priceEn: pkg.priceEn,
+                                priceBn: pkg.priceBn,
+                              });
+                            }}
                             className="w-full py-2 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-xl font-bold text-[11px] flex items-center justify-center gap-1.5 transition cursor-pointer"
                           >
                             <MessageCircle className="w-3.5 h-3.5" />

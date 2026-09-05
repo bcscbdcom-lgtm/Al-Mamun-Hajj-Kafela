@@ -31,6 +31,8 @@ import {
   clearSearchHistory,
   removeSearchHistoryItem,
 } from '../utils/searchHistory';
+import { getUmrahPackageWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface UmrahPackagesSectionProps {
   lang: Language;
@@ -550,6 +552,29 @@ export const UmrahPackagesSection: React.FC<UmrahPackagesSectionProps> = ({
                       >
                         {lang === 'en' ? 'Book Umrah' : 'ওমরাহ বুকিং'}
                       </button>
+
+                      <a
+                        href={getUmrahPackageWhatsAppLink({
+                          title: lang === 'en' ? pkg.nameEn : pkg.nameBn,
+                        }, lang)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => {
+                          trackWhatsAppClick({
+                            id: pkg.id,
+                            nameEn: pkg.nameEn,
+                            nameBn: pkg.nameBn,
+                            type: 'umrah',
+                            source: 'umrah_card',
+                            priceEn: pkg.priceEn,
+                            priceBn: pkg.priceBn,
+                          });
+                        }}
+                        className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 transition cursor-pointer flex-shrink-0 border border-emerald-200"
+                        title={lang === 'en' ? 'WhatsApp 01712-864077' : 'হোয়াটসঅ্যাপে যোগাযোগ'}
+                      >
+                        <MessageCircle className="w-4 h-4 text-emerald-600" />
+                      </a>
 
                       <button
                         onClick={() => onViewPackageDetails(pkg)}

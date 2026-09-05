@@ -30,6 +30,8 @@ import {
   clearSearchHistory,
   removeSearchHistoryItem,
 } from '../utils/searchHistory';
+import { getHajjPackageWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface HajjPackagesSectionProps {
   lang: Language;
@@ -424,7 +426,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                   : 'bg-[#F0F9FF] text-[#334155] hover:bg-[#E0F2FE] hover:text-[#0284C7] border border-[#BAE6FD]'
               }`}
             >
-              {lang === 'en' ? 'Permanent & 5-Star VIP' : 'স্থায়ী ও ৫-স্টার ভিআইপি'}
+              {lang === 'en' ? '5-Star Special & VIP' : '৫-স্টার স্পেশাল ও ভিআইপি'}
             </button>
           </div>
 
@@ -480,6 +482,7 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
         ) : (
           filteredPackages.map((pkg) => {
             const isPop = pkg.isPopular;
+            const isFiveStarSpecial = pkg.id === 'hajj-vip-fivestar' || pkg.badgeEn === '5-Star Special';
             const isVip = pkg.category === 'vip' || pkg.category === 'vvip';
             const isCompared = comparedPackageIds.includes(pkg.id);
             const categoryTags = lang === 'en' ? (pkg.categoryTagsEn || []) : (pkg.categoryTagsBn || []);
@@ -490,6 +493,8 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                 className={`bg-white rounded-2xl p-4 sm:p-5 border flex flex-col justify-between shadow-2xs transition-all duration-300 relative group hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg ${
                   isCompared
                     ? 'border-2 border-[#0284C7] ring-2 ring-[#0284C7]/20 bg-[#F0F9FF]'
+                    : isFiveStarSpecial
+                    ? 'border-2 border-amber-400/90 ring-2 ring-amber-400/20 bg-gradient-to-b from-amber-50/25 via-white to-white'
                     : isPop
                     ? 'border-2 border-[#0284C7] ring-2 ring-[#0284C7]/15'
                     : isVip
@@ -498,26 +503,31 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                 }`}
               >
                 {/* Popular / VIP Corner Badge */}
-                {isPop && (
+                {isFiveStarSpecial ? (
+                  <div className="absolute -top-3.5 right-6 bg-gradient-to-r from-amber-600 to-amber-700 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1 border border-amber-300">
+                    <Sparkles className="w-3 h-3 text-amber-200" />
+                    <span>{lang === 'en' ? '★ 5-Star Special' : '★ ৫-স্টার স্পেশাল'}</span>
+                  </div>
+                ) : isPop ? (
                   <div className="absolute -top-3.5 right-6 bg-[#0284C7] text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1">
                     <Star className="w-3 h-3 fill-current" />
                     <span>{lang === 'en' ? '★ Most Popular' : '★ সেরা পছন্দ'}</span>
                   </div>
-                )}
-
-                {pkg.category === 'vvip' && (
+                ) : pkg.category === 'vvip' ? (
                   <div className="absolute -top-3.5 right-6 bg-[#0369A1] text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1 border border-sky-300">
                     <Sparkles className="w-3 h-3 text-sky-200" />
                     <span>{lang === 'en' ? 'Royal Platinum' : 'রয়েল প্ল্যাটিনাম'}</span>
                   </div>
-                )}
+                ) : null}
 
                 <div>
                   {/* Top Bar: Category pill + Compare Checkbox */}
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span
                       className={`text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wide inline-block ${
-                        isPop
+                        isFiveStarSpecial
+                          ? 'bg-amber-100 text-amber-900 border border-amber-300 font-bold'
+                          : isPop
                           ? 'bg-[#E0F2FE] text-[#0284C7] border border-[#BAE6FD]'
                           : isVip
                           ? 'bg-[#E0F2FE] text-[#0369A1]'
@@ -632,8 +642,12 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                   <ul className="space-y-2 text-xs md:text-sm text-[#334155] border-t border-slate-100 pt-3">
                     {(lang === 'en' ? pkg.highlightsEn : pkg.highlightsBn).slice(0, 4).map((hl, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0284C7] mt-0.5" />
-                        <span className="leading-snug">{hl}</span>
+                        <CheckCircle2
+                          className={`h-4 w-4 shrink-0 mt-0.5 ${
+                            isFiveStarSpecial ? 'text-emerald-700 font-bold' : 'text-[#0284C7]'
+                          }`}
+                        />
+                        <span className={`leading-snug ${isFiveStarSpecial ? 'font-medium text-slate-800' : ''}`}>{hl}</span>
                       </li>
                     ))}
                   </ul>
@@ -654,11 +668,23 @@ export const HajjPackagesSection: React.FC<HajjPackagesSectionProps> = ({
                     </button>
 
                     <a
-                      href={`https://wa.me/8801712864077?text=${encodeURIComponent(
-                        `Assalamu Alaikum, I would like more information about "${lang === 'en' ? pkg.nameEn : pkg.nameBn}" (${lang === 'en' ? pkg.priceEn : pkg.priceBn}) at Al Mamun Hajj Kafela.`
-                      )}`}
+                      href={getHajjPackageWhatsAppLink({
+                        title: lang === 'en' ? pkg.nameEn : pkg.nameBn,
+                        price: lang === 'en' ? pkg.priceEn : pkg.priceBn,
+                      }, lang)}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        trackWhatsAppClick({
+                          id: pkg.id,
+                          nameEn: pkg.nameEn,
+                          nameBn: pkg.nameBn,
+                          type: 'hajj',
+                          source: 'hajj_card',
+                          priceEn: pkg.priceEn,
+                          priceBn: pkg.priceBn,
+                        });
+                      }}
                       className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 transition cursor-pointer flex-shrink-0 border border-emerald-200"
                       title={lang === 'en' ? 'WhatsApp 01712-864077' : 'হোয়াটসঅ্যাপে যোগাযোগ'}
                     >

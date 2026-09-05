@@ -234,7 +234,7 @@ export const PilgrimVideoTestimonialSection: React.FC<PilgrimTestimonialsProps> 
 
           <div className="flex items-center gap-2.5 w-full md:w-auto shrink-0 justify-end">
             <a
-              href="tel:+8801711826077"
+              href="tel:+8801712864077"
               className="w-full sm:w-auto bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-2xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
             >
               <Phone className="w-3.5 h-3.5" />

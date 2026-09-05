@@ -1,6 +1,8 @@
 import React from 'react';
-import { Sparkles, GraduationCap, CheckCircle2, ChevronRight, PhoneCall } from 'lucide-react';
+import { Sparkles, GraduationCap, CheckCircle2, ChevronRight, PhoneCall, MessageCircle } from 'lucide-react';
 import { Language } from '../types';
+import { getScholarWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface ScholarSectionProps {
   lang: Language;
@@ -94,7 +96,26 @@ export const ScholarSection: React.FC<ScholarSectionProps> = ({ lang, onOpenPreR
                 <ChevronRight className="w-4 h-4" />
               </button>
               <a
-                href="tel:01712864077"
+                href={getScholarWhatsAppLink(lang)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackWhatsAppClick({
+                    id: 'scholar_advisory',
+                    nameEn: 'Scholar Guidance & Fiqh',
+                    nameBn: 'আলেমদের শরীয়াহ ও মাসআলা পরামর্শ',
+                    type: 'scholar',
+                    source: 'scholar_section',
+                  });
+                }}
+                className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs px-4 py-3 rounded-xl transition flex items-center gap-2 border border-emerald-300/40 shadow-sm cursor-pointer"
+                title={lang === 'en' ? 'Direct WhatsApp with Scholar' : 'আলেমদের সাথে সরাসরি কথা বলুন'}
+              >
+                <MessageCircle className="w-4 h-4 text-white" />
+                <span>{lang === 'en' ? 'WhatsApp Advisory' : 'আলেমদের সাথে সরাসরি কথা বলুন'}</span>
+              </a>
+              <a
+                href="tel:+8801712864077"
                 className="bg-sky-800/80 hover:bg-sky-700 text-white font-bold text-xs px-4 py-3 rounded-xl transition flex items-center gap-2 border border-sky-600/40"
               >
                 <PhoneCall className="w-3.5 h-3.5 text-sky-300" />

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { X, Send, ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
 import { Language } from '../types';
 import { getDynamicSeasonRange } from '../utils/dateUtils';
+import { submitLeadToWeb3Forms } from '../utils/leadSubmission';
+import { triggerWhatsAppToast } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface PreRegModalProps {
   isOpen: boolean;
@@ -21,6 +24,7 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
   const [pkg, setPkg] = useState(`Hajj ${getDynamicSeasonRange(false)} (Pre-Register)`);
   const [pilgrims, setPilgrims] = useState('1');
   const [forwardWhatsApp, setForwardWhatsApp] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -31,16 +35,44 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      await submitLeadToWeb3Forms({
+        name,
+        phone,
+        packageOrSubject: pkg,
+        pilgrimsCount: pilgrims,
+        formSource: 'PreRegModal',
+      });
+    } catch (err) {
+      console.warn('Submission error caught:', err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
 
     if (forwardWhatsApp) {
-      const msg = `*Pre-registration / Consultation Request*\n*Name:* ${name}\n*Phone:* ${phone}\n*Package:* ${pkg}\n*Pilgrims:* ${pilgrims}\n*Date:* ${new Date().toLocaleDateString()}`;
+      trackWhatsAppClick({
+        id: 'prereg_' + (pkg ? pkg.toLowerCase().replace(/\s+/g, '_') : 'general'),
+        nameEn: `Pre-Registration: ${pkg || 'General'}`,
+        nameBn: `প্রাক-নিবন্ধন: ${pkg || 'সাধারণ'}`,
+        type: 'hajj',
+        source: 'prereg_modal_submit',
+      });
+      triggerWhatsAppToast({
+        packageNameEn: pkg || 'Hajj Pre-Registration',
+        packageNameBn: pkg || 'হজ প্রাক-নিবন্ধন',
+      });
+      const msg = lang === 'en'
+        ? `Assalamu Alaikum, I am interested in knowing more about Al Mamun Hajj Kafela's ${pkg} and submitted a pre-registration request:\n• Name: ${name}\n• Phone: ${phone}\n• Pilgrims: ${pilgrims}`
+        : `আসসালামু আলাইকুম, আমি আল মামুন হজ কাফেলার ${pkg} সম্পর্কে জানতে আগ্রহী এবং প্রাক-নিবন্ধন তথ্য জমা দিয়েছি:\n• নাম: ${name}\n• মোবাইল: ${phone}\n• যাত্রী সংখ্যা: ${pilgrims} জন`;
       const url = `https://wa.me/8801712864077?text=${encodeURIComponent(msg)}`;
       setTimeout(() => {
         window.open(url, '_blank');
-      }, 500);
+      }, 400);
     }
   };
 
@@ -144,7 +176,7 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
                     <option value="ইকোনমি সাশ্রয়ী প্যাকেজ (৳ ৫,৫০,০০০)">ইকোনমি সাশ্রয়ী প্যাকেজ (৳ ৫,৫০,০০০)</option>
                     <option value="স্ট্যান্ডার্ড সাশ্রয়ী প্যাকেজ (৳ ৫,৮০,০০০)">স্ট্যান্ডার্ড সাশ্রয়ী প্যাকেজ (৳ ৫,৮০,০০০)</option>
                     <option value="নন শিফটিং স্থায়ী প্যাকেজ (৳ ৬,৯৫,০০০)">নন শিফটিং স্থায়ী প্যাকেজ (৳ ৬,৯৫,০০০)</option>
-                    <option value="ফাইভ স্টার ভিআইপি প্যাকেজ (৳ ১৫,০০,০০০)">ফাইভ স্টার ভিআইপি প্যাকেজ (৳ ১৫,০০,০০০)</option>
+                    <option value="হজ্ব ফাইভ স্টার স্পেশাল (শিফটিং সর্ট প্যাকেজ) (৳ ৮,২০,০০০)">হজ্ব ফাইভ স্টার স্পেশাল (শিফটিং সর্ট প্যাকেজ) (৳ ৮,২০,০০০)</option>
                     <option value="August/September Umrah (৳ ১৬০,০০০)">August/September Umrah (৳ ১৬০,০০০)</option>
                     <option value="Umrah Express (৳ ১৬৫,০০০)">Umrah Express (৳ ১৬৫,০০০)</option>
                     <option value="Umrah Comfort Family (৳ ২১৫,০০০)">Umrah Comfort Family (৳ ২১৫,০০০)</option>
@@ -189,10 +221,20 @@ export const PreRegModal: React.FC<PreRegModalProps> = ({
 
               <button
                 type="submit"
-                className="w-full bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold py-3.5 rounded-xl shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
+                disabled={isSubmitting}
+                className="w-full bg-[#0284C7] hover:bg-[#0369A1] disabled:opacity-70 text-white text-xs font-bold py-3.5 rounded-xl shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Send className="w-4 h-4" />
-                <span>{lang === 'en' ? 'Submit Pre-Registration' : 'প্রাক-নিবন্ধন জমা দিন'}</span>
+                {isSubmitting ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>{lang === 'en' ? 'Submitting...' : 'জমা হচ্ছে...'}</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>{lang === 'en' ? 'Submit Pre-Registration' : 'প্রাক-নিবন্ধন জমা দিন'}</span>
+                  </>
+                )}
               </button>
 
               <button

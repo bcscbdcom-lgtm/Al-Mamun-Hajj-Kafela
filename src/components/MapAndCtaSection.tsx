@@ -1,6 +1,8 @@
 import React from 'react';
 import { Phone, MessageCircle, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
 import { Language } from '../types';
+import { getGeneralWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface MapAndCtaSectionProps {
   lang: Language;
@@ -40,9 +42,18 @@ export const MapAndCtaSection: React.FC<MapAndCtaSectionProps> = ({ lang }) => {
             </a>
 
             <a
-              href="https://wa.me/8801712864077?text=আসসালামু%20আলাইকুম,%20আল%20মামুন%20হজ্ব%20কাফেলা%20সম্পর্কে%20জানতে%20চাই"
+              href={getGeneralWhatsAppLink(lang)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackWhatsAppClick({
+                  id: 'map_cta_inquiry',
+                  nameEn: 'Map & Contact Banner Inquiry',
+                  nameBn: 'ম্যাপ ও যোগাযোগ ব্যানার অনুসন্ধান',
+                  type: 'general',
+                  source: 'map_and_cta_section',
+                });
+              }}
               className="bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-400/30 font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition flex items-center gap-2 shadow-md"
             >
               <MessageCircle className="w-4 h-4 text-white" />

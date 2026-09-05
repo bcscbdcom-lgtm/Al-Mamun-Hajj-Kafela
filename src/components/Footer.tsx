@@ -3,12 +3,15 @@ import { MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react';
 import { Language } from '../types';
 import { getDynamicSeasonRange, getDynamicShortSeasonRange } from '../utils/dateUtils';
 import { BrandLogo } from './BrandLogo';
+import { getGeneralWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface FooterProps {
   lang: Language;
+  onOpenPortal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ lang }) => {
+export const Footer: React.FC<FooterProps> = ({ lang, onOpenPortal }) => {
   return (
     <footer className="bg-[#0369A1] pt-16 pb-12 border-t border-[#0284C7] text-xs text-sky-100/90">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -67,9 +70,18 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
 
             {/* WhatsApp */}
             <a
-              href="https://wa.me/8801712864077?text=আসসালামু%20আলাইকুম,%20আল%20মামুন%20হজ্ব%20কাফেলা%20সম্পর্কে%20জানতে%20চাই"
+              href={getGeneralWhatsAppLink(lang)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackWhatsAppClick({
+                  id: 'general_footer',
+                  nameEn: 'Footer WhatsApp Inquiry',
+                  nameBn: 'ফুটার হোয়াটসঅ্যাপ অনুসন্ধান',
+                  type: 'general',
+                  source: 'footer',
+                });
+              }}
               aria-label="WhatsApp"
               title={lang === 'en' ? 'WhatsApp Inquiry' : 'আমাদের হোয়াটসঅ্যাপে মেসেজ দিন'}
               className="w-10 h-10 rounded-full border border-white/30 bg-white/10 hover:bg-[#25D366] hover:border-[#25D366] hover:text-white hover:scale-110 flex items-center justify-center transition-all duration-300 shadow-xs font-bold text-sm"
@@ -138,7 +150,10 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             </p>
             <p className="flex items-center gap-2.5">
               <Phone className="w-4 h-4 text-sky-200 flex-shrink-0" />
-              <span className="font-mono">01712-864077, 01676-500395</span>
+              <span className="font-mono">
+                <a href="tel:+8801712864077" className="hover:underline">01712-864077</a>,{' '}
+                <a href="tel:+8801676500395" className="hover:underline">01676-500395</a>
+              </span>
             </p>
             <p className="flex items-center gap-2.5">
               <Mail className="w-4 h-4 text-sky-200 flex-shrink-0" />
@@ -201,6 +216,15 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
           <a href="#home" className="hover:text-white hover:underline">
             {lang === 'en' ? 'Back to Top ↑' : 'উপরে যান ↑'}
           </a>
+          {onOpenPortal && (
+            <button
+              onClick={onOpenPortal}
+              className="text-sky-200/70 hover:text-white transition cursor-pointer flex items-center gap-1 border-l border-sky-800/80 pl-4 ml-1"
+              title={lang === 'en' ? 'Open Staff & Analytics Dashboard' : 'স্টাফ পোর্টাল ও অ্যানালিটিক্স'}
+            >
+              <span>{lang === 'en' ? 'Staff Portal' : 'স্টাফ পোর্টাল'}</span>
+            </button>
+          )}
         </div>
       </div>
     </footer>

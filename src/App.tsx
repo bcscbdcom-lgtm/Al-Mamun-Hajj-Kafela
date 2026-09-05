@@ -32,6 +32,7 @@ import { PackageCompareBar } from './components/PackageCompareBar';
 import { FloatingActions } from './components/FloatingActions';
 import { ReadingProgressBar } from './components/ReadingProgressBar';
 import { LanguageToast } from './components/LanguageToast';
+import { WhatsAppToast } from './components/WhatsAppToast';
 
 function AppContent() {
   const { lang, toggleLanguage } = useLanguage();
@@ -350,7 +351,7 @@ function AppContent() {
       </main>
 
       {/* 18. Footer */}
-      <Footer lang={lang} />
+      <Footer lang={lang} onOpenPortal={() => setIsStaffPortalOpen(true)} />
 
       {/* Floating Package Comparison Toolbar */}
       <PackageCompareBar
@@ -437,6 +438,7 @@ function AppContent() {
       />
 
       <LanguageToast />
+      <WhatsAppToast />
     </div>
   );
 }

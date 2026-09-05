@@ -1,6 +1,8 @@
 import React from 'react';
 import { BookOpen, PhoneCall, MessageCircle, Send } from 'lucide-react';
 import { Language } from '../types';
+import { getScholarWhatsAppLink } from '../utils/whatsapp';
+import { trackWhatsAppClick } from '../utils/inquiryTracker';
 
 interface AskScholarSectionProps {
   lang: Language;
@@ -55,16 +57,25 @@ export const AskScholarSection: React.FC<AskScholarSectionProps> = ({
               </button>
             )}
             <a
-              href="https://wa.me/8801712864077"
+              href={getScholarWhatsAppLink(lang)}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackWhatsAppClick({
+                  id: 'ask_scholar_section_inquiry',
+                  nameEn: 'Scholar Advisory Card WhatsApp',
+                  nameBn: 'আলেম উপদেষ্টা কার্ড হোয়াটসঅ্যাপ',
+                  type: 'scholar',
+                  source: 'ask_scholar_section_card',
+                });
+              }}
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-xs"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>{lang === 'en' ? 'WhatsApp Advisory' : 'হোয়াটসঅ্যাপে প্রশ্ন করুন'}</span>
             </a>
             <a
-              href="tel:01712864077"
+              href="tel:+8801712864077"
               className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-2"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#0284C7]" />
