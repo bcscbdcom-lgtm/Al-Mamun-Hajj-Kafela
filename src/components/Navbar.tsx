@@ -52,21 +52,21 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
   };
 
   return (
-    <nav className="bg-white sticky top-0 z-40 border-b border-[#E2E8F0] shadow-xs transition-colors text-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <nav className="bg-white sticky top-0 z-40 border-b border-[#E2E8F0] shadow-xs transition-colors text-slate-800 w-full max-w-full overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-1.5 sm:gap-4">
           {/* Left: Brand Logo & Title */}
-          <a href="#home" className="flex items-center gap-3.5 group shrink-0 py-1">
-            <BrandLogo className="h-14 md:h-16 w-auto object-contain shrink-0" />
-            <div>
-              <div className="text-lg sm:text-xl font-black text-[#0369A1] tracking-tight leading-none">
+          <a href="#home" className="flex items-center gap-2 sm:gap-3.5 group min-w-0 flex-1 sm:flex-initial py-1">
+            <BrandLogo className="h-10 sm:h-14 md:h-16 w-auto object-contain shrink-0" />
+            <div className="min-w-0">
+              <div className="text-sm sm:text-base md:text-xl font-black text-[#0369A1] tracking-tight leading-tight truncate sm:whitespace-normal">
                 {lang === 'en' ? (
-                  <>AL MAMUN<span className="text-[#0284C7] ml-1.5 font-bold">HAJJ KAFELA</span></>
+                  <>AL MAMUN<span className="text-[#0284C7] ml-1 sm:ml-1.5 font-bold">HAJJ KAFELA</span></>
                 ) : (
-                  <>আল মামুন<span className="text-[#0284C7] ml-1.5 font-bold">হজ্ব কাফেলা</span></>
+                  <>আল মামুন<span className="text-[#0284C7] ml-1 sm:ml-1.5 font-bold">হজ্ব কাফেলা</span></>
                 )}
               </div>
-              <div className="text-[11px] font-bold text-slate-500 tracking-wider uppercase mt-1">
+              <div className="text-[9px] sm:text-[11px] font-bold text-slate-500 tracking-wider uppercase mt-0.5 sm:mt-1 truncate">
                 {lang === 'en' ? 'Khulna, Bangladesh' : 'পাওয়ার হাউজ মোড়, খুলনা'}
               </div>
             </div>
@@ -100,15 +100,15 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
           </div>
 
           {/* Right: Controls & CTAs */}
-          <div className="flex items-center gap-2.5 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Language Switcher */}
             <button
               onClick={onToggleLang}
               id="langToggleBtn"
-              className="flex items-center gap-1.5 text-xs font-bold text-[#0369A1] bg-[#F0F9FF] hover:bg-[#0284C7] hover:text-white border border-[#BAE6FD] px-3 py-2 rounded-xl transition-colors cursor-pointer"
+              className="flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#0369A1] bg-[#F0F9FF] hover:bg-[#0284C7] hover:text-white border border-[#BAE6FD] px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl transition-colors cursor-pointer shrink-0"
               title="Change Language"
             >
-              <Globe className="w-3.5 h-3.5 text-[#0284C7] group-hover:text-white" />
+              <Globe className="w-3.5 h-3.5 text-[#0284C7] group-hover:text-white shrink-0" />
               <span>{lang === 'en' ? 'বাংলা' : 'English'}</span>
             </button>
 
@@ -145,10 +145,10 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
             {/* Mobile Menu Toggle (Visible only on mobile/tablet < lg) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-700 hover:text-[#0284C7] hover:bg-slate-100 rounded-lg transition"
+              className="lg:hidden p-1.5 sm:p-2 text-slate-700 hover:text-[#0284C7] hover:bg-slate-100 rounded-lg transition shrink-0"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 h-6" /> : <Menu className="w-5 h-5 sm:w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -156,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenPreReg
 
       {/* Mobile Nav Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-1 shadow-lg animate-in slide-in-from-top-2 text-slate-800">
+        <div className="lg:hidden border-t border-slate-200 bg-white px-3 sm:px-6 pt-3 pb-6 space-y-1 shadow-lg animate-in slide-in-from-top-2 text-slate-800 w-full max-w-full overflow-hidden">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href;
             return (

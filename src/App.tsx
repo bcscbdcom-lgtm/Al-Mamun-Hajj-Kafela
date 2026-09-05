@@ -214,7 +214,7 @@ function AppContent() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col bg-[#F8FAFC] text-[#334155] transition-colors duration-200 ${lang === 'bn' ? 'font-bn' : ''}`}>
+    <div className={`min-h-screen w-full max-w-full overflow-x-hidden flex flex-col bg-[#F8FAFC] text-[#334155] transition-colors duration-200 ${lang === 'bn' ? 'font-bn' : ''}`}>
       {/* Dynamic Scroll Reading Progress Bar */}
       <ReadingProgressBar />
 

@@ -14,7 +14,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   onOpenPortal,
 }) => {
   return (
-    <div className="bg-[#0369A1] text-white text-xs py-2 px-4 border-b border-[#0284C7] transition-colors">
+    <div className="bg-[#0369A1] text-white text-xs py-2 px-3 sm:px-6 border-b border-[#0284C7] transition-colors w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 text-sky-100 text-[11px] sm:text-xs">
