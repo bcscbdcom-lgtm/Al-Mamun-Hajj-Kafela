@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Language, PackageItem, NoticeItem } from './types';
 import { getDynamicSeasonRange } from './utils/dateUtils';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
@@ -10,16 +10,15 @@ import { SpiritualLiveSection } from './components/SpiritualLiveSection';
 import { TrustBadges } from './components/TrustBadges';
 import { AboutSection } from './components/AboutSection';
 import { ServicesGrid } from './components/ServicesGrid';
+import { PrayerTimesSection } from './components/PrayerTimesSection';
 import { HajjPackagesSection } from './components/HajjPackagesSection';
 import { UmrahPackagesSection } from './components/UmrahPackagesSection';
 import { GuideSection } from './components/GuideSection';
 import { PilgrimTools } from './components/PilgrimTools';
 import { WhyChooseUs } from './components/WhyChooseUs';
-import { PilgrimVideoTestimonialSection } from './components/PilgrimVideoTestimonialSection';
 import { FaqSection } from './components/FaqSection';
 import { ConsultationSection } from './components/ConsultationSection';
 import { BlogSection } from './components/BlogSection';
-import { MapAndCtaSection } from './components/MapAndCtaSection';
 import { Footer } from './components/Footer';
 import { PreRegModal } from './components/PreRegModal';
 import { PackageDetailModal } from './components/PackageDetailModal';
@@ -30,9 +29,32 @@ import { PackageShareModal } from './components/PackageShareModal';
 import { PackageCompareModal } from './components/PackageCompareModal';
 import { PackageCompareBar } from './components/PackageCompareBar';
 import { FloatingActions } from './components/FloatingActions';
+import { BackToTop } from './components/BackToTop';
 import { ReadingProgressBar } from './components/ReadingProgressBar';
 import { LanguageToast } from './components/LanguageToast';
 import { WhatsAppToast } from './components/WhatsAppToast';
+
+// Lazy loaded heavier sections (Video Gallery & Interactive Maps) for optimized initial page load speed
+const PilgrimVideoTestimonialSection = lazy(() =>
+  import('./components/PilgrimVideoTestimonialSection').then((module) => ({
+    default: module.PilgrimVideoTestimonialSection,
+  }))
+);
+
+const MapAndCtaSection = lazy(() =>
+  import('./components/MapAndCtaSection').then((module) => ({
+    default: module.MapAndCtaSection,
+  }))
+);
+
+const SectionSkeleton = () => (
+  <div className="w-full py-16 px-4 bg-slate-50 flex items-center justify-center min-h-[300px]">
+    <div className="flex flex-col items-center gap-3">
+      <div className="w-8 h-8 border-3 border-[#0284C7] border-t-transparent rounded-full animate-spin" />
+      <span className="text-xs font-semibold text-slate-500 tracking-wide">Loading component...</span>
+    </div>
+  </div>
+);
 
 function AppContent() {
   const { lang, toggleLanguage } = useLanguage();
@@ -290,6 +312,9 @@ function AppContent() {
           onSelectService={(svc) => handleOpenPreReg(svc)}
         />
 
+        {/* 7.5 Daily Prayer Times (Salat) Section for Dhaka & Makkah */}
+        <PrayerTimesSection lang={lang} />
+
         {/* 8. Hajj Packages */}
         <HajjPackagesSection
           lang={lang}
@@ -327,11 +352,13 @@ function AppContent() {
         {/* 12. Why Choose Us (Value Pillars) */}
         <WhyChooseUs lang={lang} />
 
-        {/* 13. Pilgrim Written Reviews & Real Experiences */}
-        <PilgrimVideoTestimonialSection
-          lang={lang}
-          onOpenPreReg={handleOpenPreReg}
-        />
+        {/* 13. Pilgrim Written Reviews & Real Experiences (Lazy Loaded) */}
+        <Suspense fallback={<SectionSkeleton />}>
+          <PilgrimVideoTestimonialSection
+            lang={lang}
+            onOpenPreReg={handleOpenPreReg}
+          />
+        </Suspense>
 
         {/* 14. FAQs Accordion */}
         <FaqSection
@@ -346,8 +373,10 @@ function AppContent() {
         {/* 16. Authentic Guidance Blog */}
         <BlogSection lang={lang} />
 
-        {/* 17. Interactive Map & Pre-Footer Callout */}
-        <MapAndCtaSection lang={lang} />
+        {/* 17. Interactive Map & Pre-Footer Callout (Lazy Loaded) */}
+        <Suspense fallback={<SectionSkeleton />}>
+          <MapAndCtaSection lang={lang} />
+        </Suspense>
       </main>
 
       {/* 18. Footer */}
@@ -382,6 +411,7 @@ function AppContent() {
           setSelectedPackageForModal(null);
           handleOpenPrintDialog(pkg);
         }}
+        onSharePackage={handleOpenShare}
       />
 
       <PackageShareModal
@@ -436,6 +466,9 @@ function AppContent() {
         onOpenWalkthrough={() => setIsWalkthroughOpen(true)}
         onOpenPrintModal={() => handleOpenPrintDialog()}
       />
+
+      {/* Floating Back To Top Button */}
+      <BackToTop lang={lang} />
 
       <LanguageToast />
       <WhatsAppToast />

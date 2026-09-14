@@ -26,7 +26,8 @@ import {
   AlertCircle,
   Coins,
   TrendingUp,
-  Info
+  Info,
+  Share2
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Language, PackageItem } from '../types';
@@ -48,6 +49,7 @@ interface PackageDetailModalProps {
   onClose: () => void;
   onBookNow: (pkgName: string) => void;
   onOpenPrintModal?: (pkg: PackageItem) => void;
+  onSharePackage?: (pkg: PackageItem) => void;
 }
 
 export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
@@ -56,6 +58,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
   onClose,
   onBookNow,
   onOpenPrintModal,
+  onSharePackage,
 }) => {
   if (!pkg) return null;
 
@@ -445,6 +448,17 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
             <Printer className="w-4 h-4 text-[#0369A1]" />
             <span>{lang === 'en' ? 'Print PDF' : 'PDF প্রিন্ট'}</span>
           </button>
+
+          {onSharePackage && (
+            <button
+              onClick={() => onSharePackage(pkg)}
+              className="w-full sm:w-auto bg-[#F8FAFC] hover:bg-slate-100 text-slate-700 text-xs font-bold px-4 py-3.5 rounded-xl transition flex items-center justify-center gap-1.5 border border-[#E5E7EB] cursor-pointer"
+              title={lang === 'en' ? 'Share Package' : 'প্যাকেজ শেয়ার করুন'}
+            >
+              <Share2 className="w-4 h-4 text-[#0284C7]" />
+              <span>{lang === 'en' ? 'Share' : 'শেয়ার'}</span>
+            </button>
+          )}
 
           <a
             href={
